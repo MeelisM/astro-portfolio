@@ -1,0 +1,28 @@
+{
+  "projects": [
+    {
+      "name": "Portfolio Website",
+      "description": "Open-source portfolio website built with Astro. Project uses a CI/CD pipeline and is hosted in Amazon S3 bucket that is only accessible by Amazon Cloudfront. Domain is set up in Cloudflare.",
+      "techUsed": ["Astro", "Tailwind CSS", "TypeScript", "Amazon S3"],
+      "link": "https://github.com/MeelisM/meelis.dev"
+    },
+    {
+      "name": "E-commerce Platform",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc faucibus odio vitae neque viverra, ac tempor eros congue. Aliquam et iaculis nisi. Integer non tincidunt velit. Cras eu ipsum facilisis, lobortis urna vitae, ultricies sem. Pellentesque non eros diam. Morbi mauris eros, egestas quis porta hendrerit, efficitur ultrices mi. Nunc commodo lectus ut nulla euismod varius.",
+      "techUsed": ["Node.js", "MongoDB", "Tailwind"],
+      "link": "https://yourecommerce.com"
+    },
+    {
+      "name": "Dashboard App",
+      "description": "An analytics dashboard with real-time data visualization. An analytics dashboard with real-time data visualization. An analytics dashboard with real-time data visualization.",
+      "techUsed": ["Vue.js", "Vagrant", "Tailwind"],
+      "link": "https://yourdashboard.com"
+    },
+    {
+      "name": "Chat Application",
+      "description": "A real-time chat app using WebSockets and Firebase. A real-time chat app using WebSockets and Firebase. A real-time chat app using WebSockets and Firebase.",
+      "techUsed": ["Linux", "MongoDB", "Tailwind", "Go"],
+      "link": "https://yourchatapp.com"
+    }
+  ]
+}

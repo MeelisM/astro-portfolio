@@ -1,0 +1,54 @@
+---
+import projectsData from "../content/projects.json";
+import SkillIcons from "./SkillIcons.astro";
+const { projects } = projectsData;
+---
+<section>
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+    {projects.map((project) => (
+<div 
+  class="project-card group/project bg-black text-white p-4 rounded-lg shadow-lg transition-all duration-300 relative focus-within:ring-2 focus-within:ring-blue-400 focus-within:outline-none hover:shadow-xl hover:scale-105 focus-within:shadow-xl focus-within:scale-105"
+  tabindex="0"
+  role="button"
+  aria-labelledby={`project-title-${project.name}`}
+>
+
+  <!-- Project Title & Link -->
+  <div class="flex justify-between items-center mb-2">
+    <h3 id={`project-title-${project.name}`} class="text-xl font-semibold">{project.name}</h3>
+    <div class="relative group/icon">
+      <a 
+        href={project.link} 
+        target="_blank" 
+        rel="noopener noreferrer" 
+        aria-label={`View ${project.name} on GitHub`} 
+        class="transform transition duration-300 hover:-translate-y-1 focus:ring-2 focus:ring-blue-400 focus:outline-none"
+      >
+        <img 
+          src="/github-mark-white.svg" 
+          alt={`GitHub repository link for ${project.name}`} 
+          class="w-6 h-6 transform transition duration-200 group-hover/icon:-translate-y-1 group-hover/icon:scale-125 group-focus-within/icon:-translate-y-1 group-focus-within/icon:scale-125" 
+        />
+        <span 
+          class="absolute opacity-0 group-hover/icon:opacity-100 group-focus-within/icon:opacity-100 -bottom-0 right-8 bg-gray-600 text-white text-xs px-2 py-1 rounded transition-opacity duration-200 whitespace-nowrap pointer-events-none"
+          role="tooltip"
+          aria-hidden="true"
+        >
+          View on GitHub
+        </span>
+      </a>
+    </div>
+  </div>
+
+  <!-- Project Description (Only triggered by project hover/focus) -->
+  <p class="text-sm text-gray-300 mb-2 opacity-50 group-hover/project:opacity-100 group-focus-within/project:opacity-100">
+    {project.description}
+  </p>
+
+  <!-- Tech Used (Skill Icons) -->
+  <SkillIcons filter={project.techUsed} />
+</div>
+
+    ))}
+  </div>
+</section>

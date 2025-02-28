@@ -1,0 +1,63 @@
+---
+import "../styles/global.css";
+import Navbar from "../components/Navbar.astro";
+import Footer from "../components/Footer.astro";
+import Skills from "../components/Skills.astro";
+import Projects from "../components/Projects.astro";
+---
+
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>meelis.dev</title>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Carlito:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="min-h-screen flex flex-col text-gray-900">
+    <!-- Skip Link -->
+    <a
+      href="#main-content"
+      class="sr-only focus:not-sr-only absolute top-4 left-4 bg-white text-gray-900 px-4 py-2 rounded shadow-md"
+    >
+      Skip to main content
+    </a>
+
+    <!-- Header with border -->
+    <header class="border-b border-gray-300">
+      <div class="max-w-4xl mx-auto px-4">
+        <Navbar />
+      </div>
+    </header>
+
+    <!-- Main Content Wrapper -->
+    <main id="main-content" role="main" class="flex-1 max-w-4xl mx-auto px-4">
+      <section
+        id="Projects"
+        class="border-b border-gray-300 py-4"
+        aria-labelledby="projects-heading"
+      >
+        <h2 id="projects-heading" class="sr-only">Projects</h2>
+        <Projects />
+      </section>
+      <section id="Skills" class="py-4" aria-labelledby="skills-heading">
+        <h2 id="skills-heading" class="sr-only">Skills</h2>
+        <Skills />
+      </section>
+    </main>
+
+    <!-- Footer Wrapper -->
+    <footer class="border-t border-gray-300">
+      <div class="max-w-4xl mx-auto">
+        <Footer />
+      </div>
+    </footer>
+  </body>
+</html>
