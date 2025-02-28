@@ -2,27 +2,27 @@
   "projects": [
     {
       "name": "Portfolio Website",
-      "description": "Open-source portfolio website built with Astro. Project uses a CI/CD pipeline and is hosted in Amazon S3 bucket that is only accessible by Amazon Cloudfront. Domain is set up in Cloudflare.",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent lacinia nibh tellus, et maximus massa rutrum et. Curabitur gravida lorem vitae libero fringilla, in aliquet urna iaculis. Etiam lobortis tempor ornare. Nulla quis risus id eros aliquet volutpat. Donec eget semper ipsum. Nullam dignissim neque id volutpat fringilla. Phasellus vitae sapien et magna hendrerit volutpat. Ut volutpat diam eget dolor sagittis rutrum. Nullam a risus pellentesque, auctor turpis sed, egestas sapien.",
       "techUsed": ["Astro", "Tailwind CSS", "TypeScript", "Amazon S3"],
-      "link": "https://github.com/MeelisM/meelis.dev"
+      "link": "#"
     },
     {
       "name": "E-commerce Platform",
-      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc faucibus odio vitae neque viverra, ac tempor eros congue. Aliquam et iaculis nisi. Integer non tincidunt velit. Cras eu ipsum facilisis, lobortis urna vitae, ultricies sem. Pellentesque non eros diam. Morbi mauris eros, egestas quis porta hendrerit, efficitur ultrices mi. Nunc commodo lectus ut nulla euismod varius.",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent lacinia nibh tellus, et maximus massa rutrum et. Curabitur gravida lorem vitae libero fringilla, in aliquet urna iaculis. Etiam lobortis tempor ornare. Nulla quis risus id eros aliquet volutpat. Donec eget semper ipsum. Nullam dignissim neque id volutpat fringilla. Phasellus vitae sapien et magna hendrerit volutpat. Ut volutpat diam eget dolor sagittis rutrum. Nullam a risus pellentesque, auctor turpis sed, egestas sapien.",
       "techUsed": ["Node.js", "MongoDB", "Tailwind"],
-      "link": "https://yourecommerce.com"
+      "link": "#"
     },
     {
       "name": "Dashboard App",
-      "description": "An analytics dashboard with real-time data visualization. An analytics dashboard with real-time data visualization. An analytics dashboard with real-time data visualization.",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent lacinia nibh tellus, et maximus massa rutrum et. Curabitur gravida lorem vitae libero fringilla, in aliquet urna iaculis. Etiam lobortis tempor ornare. Nulla quis risus id eros aliquet volutpat. Donec eget semper ipsum. Nullam dignissim neque id volutpat fringilla. Phasellus vitae sapien et magna hendrerit volutpat. Ut volutpat diam eget dolor sagittis rutrum. Nullam a risus pellentesque, auctor turpis sed, egestas sapien.",
       "techUsed": ["Vue.js", "Vagrant", "Tailwind"],
-      "link": "https://yourdashboard.com"
+      "link": "#"
     },
     {
       "name": "Chat Application",
-      "description": "A real-time chat app using WebSockets and Firebase. A real-time chat app using WebSockets and Firebase. A real-time chat app using WebSockets and Firebase.",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent lacinia nibh tellus, et maximus massa rutrum et. Curabitur gravida lorem vitae libero fringilla, in aliquet urna iaculis. Etiam lobortis tempor ornare. Nulla quis risus id eros aliquet volutpat. Donec eget semper ipsum. Nullam dignissim neque id volutpat fringilla. Phasellus vitae sapien et magna hendrerit volutpat.",
       "techUsed": ["Linux", "MongoDB", "Tailwind", "Go"],
-      "link": "https://yourchatapp.com"
+      "link": "#"
     }
   ]
 }
