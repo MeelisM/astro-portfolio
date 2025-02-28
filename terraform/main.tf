@@ -80,7 +80,6 @@ resource "aws_iam_role_policy_attachment" "role_policy_attachment" {
 # ---------------------
 resource "aws_s3_bucket" "website_bucket" {
   bucket = var.website_bucket_name
-  force_destroy = true
 }
 
 resource "aws_s3_bucket_public_access_block" "website_bucket_public_access_block" {
@@ -146,6 +145,17 @@ resource "aws_acm_certificate_validation" "cert" {
 # ---------------------
 # CloudFront Distribution
 # ---------------------
+resource "aws_cloudfront_response_headers_policy" "csp_policy" {
+  name = "CSPPolicy"
+
+  security_headers_config {
+    content_security_policy {
+      override = true
+      content_security_policy = "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self' data:; object-src 'none'; base-uri 'self'; frame-ancestors 'none';"
+    }
+  }
+}
+
 resource "aws_cloudfront_distribution" "website_distribution" {
   depends_on = [aws_acm_certificate_validation.cert]
 
@@ -183,6 +193,8 @@ resource "aws_cloudfront_distribution" "website_distribution" {
     min_ttl                = 0
     default_ttl            = 31536000
     max_ttl                = 31536000
+
+    response_headers_policy_id = aws_cloudfront_response_headers_policy.csp_policy.id
   }
 
   aliases = [
