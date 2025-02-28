@@ -26,13 +26,14 @@ resource "aws_iam_role" "github_actions_role" {
           },
           StringLike = {
             "token.actions.githubusercontent.com:sub": [
-              "repo:${var.github_username}/${var.github_repository_name}:ref:refs/heads/production"
+              "repo:${var.github_username}/${var.github_repository_name}:ref:refs/heads/main"
             ]
           }
         }
       }
     ]
   })
+  depends_on = [aws_iam_openid_connect_provider.github_oidc]
 }
 
 data "aws_caller_identity" "current" {}
@@ -64,7 +65,7 @@ resource "aws_iam_policy" "custom_s3_policy" {
           "cloudfront:CreateInvalidation"
         ]
         Resource = "arn:aws:cloudfront::${data.aws_caller_identity.current.account_id}:distribution/${aws_cloudfront_distribution.website_distribution.id}"
-      }
+      },
     ]
   })
 }
@@ -79,14 +80,15 @@ resource "aws_iam_role_policy_attachment" "role_policy_attachment" {
 # ---------------------
 resource "aws_s3_bucket" "website_bucket" {
   bucket = var.website_bucket_name
+  force_destroy = true
 }
 
 resource "aws_s3_bucket_public_access_block" "website_bucket_public_access_block" {
   bucket                  = aws_s3_bucket.website_bucket.id
   block_public_acls       = true
-  block_public_policy     = false
+  block_public_policy     = true
   ignore_public_acls      = true
-  restrict_public_buckets = false
+  restrict_public_buckets = true
 }
 
 resource "aws_s3_bucket_policy" "cloudfront_access_policy" {
@@ -103,24 +105,6 @@ resource "aws_s3_bucket_policy" "cloudfront_access_policy" {
         Action   = "s3:GetObject",
         Resource = "${aws_s3_bucket.website_bucket.arn}/*"
       },
-      {
-        Sid     = "AllowGitHubActionsAccess",
-        Effect  = "Allow",
-        Principal = {
-          AWS = aws_iam_role.github_actions_role.arn
-        },
-        Action = [
-          "s3:PutObject",
-          "s3:PutObjectAcl",
-          "s3:GetObject",
-          "s3:ListBucket",
-          "s3:DeleteObject"
-        ],
-        Resource = [
-          aws_s3_bucket.website_bucket.arn,
-          "${aws_s3_bucket.website_bucket.arn}/*"
-        ]
-      }
     ]
   })
 }
