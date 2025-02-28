@@ -1,5 +1,12 @@
 @import "tailwindcss";
 
+@font-face {
+  font-family: 'Carlito';
+  src: url('/fonts/Carlito-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-display: swap;
+}
+
 body {
   font-family: 'Carlito', sans-serif;
 }
