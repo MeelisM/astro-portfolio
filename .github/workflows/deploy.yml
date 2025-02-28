@@ -3,7 +3,7 @@ name: Deploy Astro Site to AWS
 on:
   push:
     branches:
-      - production
+      - main
   workflow_dispatch:
 
 jobs:
