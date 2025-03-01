@@ -1,28 +1,37 @@
 {
   "projects": [
     {
-      "name": "Portfolio Website",
-      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent lacinia nibh tellus, et maximus massa rutrum et. Curabitur gravida lorem vitae libero fringilla, in aliquet urna iaculis. Etiam lobortis tempor ornare. Nulla quis risus id eros aliquet volutpat. Donec eget semper ipsum. Nullam dignissim neque id volutpat fringilla. Phasellus vitae sapien et magna hendrerit volutpat. Ut volutpat diam eget dolor sagittis rutrum. Nullam a risus pellentesque, auctor turpis sed, egestas sapien.",
+      "name": "Portfolio",
+      "description": "A fast and modern portfolio built with Astro and TailwindCSS. Uses Infrastructure as Code (IaC) with Terraform to automate AWS S3 provisioning, configure CloudFront for optimized content delivery, integrate Cloudflare DNS and implement OIDC authentication for GitHub Actions, enabling secure and automated CI/CD deployments.",
       "techUsed": ["Astro", "Tailwind CSS", "TypeScript", "Amazon S3", "Terraform"],
-      "link": "#"
-    },
-    {
-      "name": "Dockerized API",
-      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent lacinia nibh tellus, et maximus massa rutrum et. Curabitur gravida lorem vitae libero fringilla, in aliquet urna iaculis. Etiam lobortis tempor ornare. Nulla quis risus id eros aliquet volutpat. Donec eget semper ipsum. Nullam dignissim neque id volutpat fringilla. Phasellus vitae sapien et magna hendrerit volutpat. Ut volutpat diam eget dolor sagittis rutrum. Nullam a risus pellentesque, auctor turpis sed, egestas sapien.",
-      "techUsed": ["Node.js", "PostgreSQL", "Docker", "Postman"],
-      "link": "#"
+      "features": ["Static site built with Astro and Tailwind CSS.", "Automated infrastructure provisioning using Terraform.", "Secure CloudFront distribution with Cloudflare DNS.", "Secure CI/CD pipeline with OIDC-authenticated GitHub Actions."],
+      "link": "https://github.com/MeelisM/meelis.dev"
     },
     {
       "name": "VMicroServices",
-      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent lacinia nibh tellus, et maximus massa rutrum et. Curabitur gravida lorem vitae libero fringilla, in aliquet urna iaculis. Etiam lobortis tempor ornare. Nulla quis risus id eros aliquet volutpat. Donec eget semper ipsum. Nullam dignissim neque id volutpat fringilla. Phasellus vitae sapien et magna hendrerit volutpat. Ut volutpat diam eget dolor sagittis rutrum. Nullam a risus pellentesque, auctor turpis sed, egestas sapien.",
+      "description": "A microservices-based project that runs in a virtualized environment using Vagrant and VirtualBox. It includes an API Gateway, Inventory Service, Billing Service, and RabbitMQ for asynchronous messaging. Both development and production environments are fully automated using scripts.",
       "techUsed": ["Node.js", "PostgreSQL", "Vagrant", "Postman", "VirtualBox", "PM2"],
-      "link": "#"
+      "features": ["Virtualized infrastructure using Vagrant and VirtualBox.", "Microservices architecture with gateway and service isolation.", "RabbitMQ for asynchronous message processing.", "Automated setup with database migrations."],
+      "link": "https://github.com/MeelisM/VMicroServices"
+    },
+    {
+      "name": "Dockerized API",
+      "description": "A microservices-based project that demonstrates containerized application architecture using Docker and Docker Compose. It includes API Gateway, Inventory Service, Billing Service and RabbitMQ message queue",
+      "techUsed": ["Node.js", "PostgreSQL", "Docker", "Postman"],
+      "features": ["Microservices architecture with independent services.", "Asynchronous order processing using RabbitMQ.", "API Gateway for centralized routing.", "Fully containerized with Docker Compose."],
+      "link": "https://github.com/MeelisM/dockerized-api"
     },
     {
       "name": "Social Network",
-      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent lacinia nibh tellus, et maximus massa rutrum et. Curabitur gravida lorem vitae libero fringilla, in aliquet urna iaculis. Etiam lobortis tempor ornare. Nulla quis risus id eros aliquet volutpat. Donec eget semper ipsum. Nullam dignissim neque id volutpat fringilla. Phasellus vitae sapien et magna hendrerit volutpat.",
-      "techUsed": ["Go", "Node.js", "Docker"],
-      "link": "#"
+      "description": "A full-stack Facebook-like social network with a REST API backend built in Go and a React frontend. Supports user profiles, posts, followers, groups, events, notifications, and real-time chat with WebSockets.",
+      "techUsed": ["Go", "Node.js", "Docker", "SQLite", "React"],
+      "features": [
+        "Follow system with private and public profiles.",
+        "Session-based auth using UUID tokens and HTTP-only cookies.",
+        "Post creation with privacy settings and media attachments.",
+        "Live notifications for follows, messages, and group activities."
+      ],
+      "link": "https://github.com/MeelisM/social-network"
     }
   ]
 }
