@@ -41,7 +41,7 @@ const socialLinks = typedSocialLinksData.map((link) => ({
 
       <a
         href="/"
-        class="text-lg font-bold underline decoration-solid focus:outline-none focus:ring
+        class="text-lg font-bold underline focus:outline-none focus:ring
       text-primary-nav"
       >
         {title}
@@ -54,7 +54,7 @@ const socialLinks = typedSocialLinksData.map((link) => ({
             <a
               href={href}
               {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
-              class="focus:outline-none focus:ring group-focus-within:scale-[1.25]"
+              class="focus:outline-none focus:ring group-focus-within:scale-[1.25] focus:ring-2 focus:ring-dotted focus:ring-primary-logo"
               aria-label={name}
             >
               <Icon
