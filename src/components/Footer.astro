@@ -1,10 +1,10 @@
 ---
-const year = new Date().getFullYear();
+const year: number = new Date().getFullYear();
 ---
 
 <footer class="w-full relative">
   <div class="max-w-4xl mx-auto text-center py-4">
-    <p class="text-black">
+    <p class="text-primary-footer">
       Copyright © {year}
       <a
         href="https://github.com/MeelisM"
@@ -13,7 +13,7 @@ const year = new Date().getFullYear();
       >
         Meelis Mumm.
         <span
-          class="absolute opacity-0 group-hover:opacity-100 group-focus:opacity-100 -top-8 left-1/2 transform -translate-x-1/2 bg-gray-600 text-white text-xs px-2 py-1 rounded transition-opacity duration-200 whitespace-nowrap pointer-events-none"
+          class="absolute opacity-0 group-hover:opacity-100 group-focus:opacity-100 group-hover:animate-wiggle group-focus-within:animate-wiggle -top-8 left-1/2 transform -translate-x-1/2 bg-primary-tooltip text-secondary-tooltip text-xs px-2 py-1 rounded transition-opacity duration-200 whitespace-nowrap pointer-events-none"
         >
           Visit GitHub
         </span>

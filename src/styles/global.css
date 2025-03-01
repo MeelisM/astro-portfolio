@@ -10,3 +10,23 @@
 body {
   font-family: 'Carlito', sans-serif;
 }
+
+@theme {
+  --color-primary-project: #9c9c9c;
+  --color-secondary-project: #ffffff;
+  --color-tertiary-project: #1e1f21;
+  --color-accent: #8a8a8a;
+  --color-primary-logo: #1c398e;
+  --color-primary-tooltip: #1c398e;
+  --color-secondary-tooltip: #ffffff;
+  --color-background: #121314;
+  --color-primary-badge: #1c398e;
+  --color-secondary-badge: #ffffff;
+  --color-primary-badge-project: #1e1f21;
+  --color-secondary-badge-project: #ffffff;
+  --color-primary-nav: #ffffff;
+  --color-primary-footer: #ffffff;
+
+
+  --animate-wiggle: wiggle 3s ease-in-out infinite;  @keyframes wiggle {    0%,    100% {      transform: rotate(-3deg);    }    50% {      transform: rotate(3deg);    }  }
+}
