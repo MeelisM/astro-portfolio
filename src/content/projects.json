@@ -3,25 +3,25 @@
     {
       "name": "Portfolio Website",
       "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent lacinia nibh tellus, et maximus massa rutrum et. Curabitur gravida lorem vitae libero fringilla, in aliquet urna iaculis. Etiam lobortis tempor ornare. Nulla quis risus id eros aliquet volutpat. Donec eget semper ipsum. Nullam dignissim neque id volutpat fringilla. Phasellus vitae sapien et magna hendrerit volutpat. Ut volutpat diam eget dolor sagittis rutrum. Nullam a risus pellentesque, auctor turpis sed, egestas sapien.",
-      "techUsed": ["Astro", "Tailwind CSS", "TypeScript", "Amazon S3"],
+      "techUsed": ["Astro", "Tailwind CSS", "TypeScript", "Amazon S3", "Terraform"],
       "link": "#"
     },
     {
-      "name": "E-commerce Platform",
+      "name": "Dockerized API",
       "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent lacinia nibh tellus, et maximus massa rutrum et. Curabitur gravida lorem vitae libero fringilla, in aliquet urna iaculis. Etiam lobortis tempor ornare. Nulla quis risus id eros aliquet volutpat. Donec eget semper ipsum. Nullam dignissim neque id volutpat fringilla. Phasellus vitae sapien et magna hendrerit volutpat. Ut volutpat diam eget dolor sagittis rutrum. Nullam a risus pellentesque, auctor turpis sed, egestas sapien.",
-      "techUsed": ["Node.js", "MongoDB", "Tailwind"],
+      "techUsed": ["Node.js", "PostgreSQL", "Docker", "Postman"],
       "link": "#"
     },
     {
-      "name": "Dashboard App",
+      "name": "VMicroServices",
       "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent lacinia nibh tellus, et maximus massa rutrum et. Curabitur gravida lorem vitae libero fringilla, in aliquet urna iaculis. Etiam lobortis tempor ornare. Nulla quis risus id eros aliquet volutpat. Donec eget semper ipsum. Nullam dignissim neque id volutpat fringilla. Phasellus vitae sapien et magna hendrerit volutpat. Ut volutpat diam eget dolor sagittis rutrum. Nullam a risus pellentesque, auctor turpis sed, egestas sapien.",
-      "techUsed": ["Vue.js", "Vagrant", "Tailwind"],
+      "techUsed": ["Node.js", "PostgreSQL", "Vagrant", "Postman", "VirtualBox", "PM2"],
       "link": "#"
     },
     {
-      "name": "Chat Application",
+      "name": "Social Network",
       "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent lacinia nibh tellus, et maximus massa rutrum et. Curabitur gravida lorem vitae libero fringilla, in aliquet urna iaculis. Etiam lobortis tempor ornare. Nulla quis risus id eros aliquet volutpat. Donec eget semper ipsum. Nullam dignissim neque id volutpat fringilla. Phasellus vitae sapien et magna hendrerit volutpat.",
-      "techUsed": ["Linux", "MongoDB", "Tailwind", "Go"],
+      "techUsed": ["Go", "Node.js", "Docker"],
       "link": "#"
     }
   ]
