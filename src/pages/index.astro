@@ -13,17 +13,17 @@ import Projects from "../components/Projects.astro";
     <title>meelis.dev</title>
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   </head>
-  <body class="min-h-screen flex flex-col text-gray-900">
+  <body class="min-h-screen flex flex-col text-primary bg-background">
     <!-- Skip Link -->
     <a
       href="#main-content"
-      class="sr-only focus:not-sr-only absolute top-4 left-4 bg-white text-gray-900 px-4 py-2 rounded shadow-md"
+      class="sr-only focus:not-sr-only absolute top-4 left-4 bg-primary text-primary-light px-4 py-2 rounded shadow-md text-center"
     >
       Skip to main content
     </a>
 
     <!-- Header with border -->
-    <header class="border-b border-gray-300">
+    <header class="border-b border-accent">
       <div class="max-w-4xl mx-auto px-4">
         <Navbar />
       </div>
@@ -31,11 +31,7 @@ import Projects from "../components/Projects.astro";
 
     <!-- Main Content Wrapper -->
     <main id="main-content" role="main" class="flex-1 max-w-4xl mx-auto px-4">
-      <section
-        id="Projects"
-        class="border-b border-gray-300 py-4"
-        aria-labelledby="projects-heading"
-      >
+      <section id="Projects" class="border-b border-accent py-4" aria-labelledby="projects-heading">
         <h2 id="projects-heading" class="sr-only">Projects</h2>
         <Projects />
       </section>
@@ -46,7 +42,7 @@ import Projects from "../components/Projects.astro";
     </main>
 
     <!-- Footer Wrapper -->
-    <footer class="border-t border-gray-300">
+    <footer class="border-t border-accent">
       <div class="max-w-4xl mx-auto">
         <Footer />
       </div>

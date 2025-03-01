@@ -1,77 +1,80 @@
+---
+import GitHubIcon from "../assets/github-mark.svg";
+import EmailIcon from "../assets/email.svg";
+import LinkedInIcon from "../assets/linkedin.svg";
+import FavIcon from "../assets/favicon.svg";
+---
+
 <nav class="w-full" aria-label="Main Navigation">
   <div class="max-w-4xl mx-auto flex justify-between items-center py-4">
     <div class="flex items-center space-x-2">
-      <img
-        src="/favicon.svg"
-        alt=""
+      <FavIcon
+        fill="currentColor"
         aria-hidden="true"
-        class="w-6 h-6 transform transition duration-300 hover:-translate-y-1 hover:scale-[1.25]"
+        class="w-6 h-6 transform transition duration-300 hover:-translate-y-1 hover:scale-[1.25] text-icons"
       />
       <a
         href="/"
-        class="text-lg font-bold underline decoration-solid focus:outline-none focus:ring"
+        class="text-lg font-bold underline decoration-solid focus:outline-none focus:ring text-primary-light"
       >
         meelis.dev
       </a>
     </div>
-    <ul class="flex space-x-6 text-gray-700">
-      <li class="relative group/icon">
+    <ul class="flex space-x-6">
+      <li class="relative group/icon text-primary-light">
         <a
           href="mailto:meelis.developer@gmail.com"
           class="group focus:outline-none focus:ring group-focus-within/icon:scale-[1.25]"
           aria-label="Email Me"
         >
-          <img
-            src="/email.svg"
-            alt="Email Icon"
+          <EmailIcon
+            stroke="currentColor"
             class="w-6 h-6 transform transition duration-300 group-hover/icon:-translate-y-1 group-hover/icon:scale-[1.25] group-focus-within/icon:-translate-y-1"
           />
         </a>
         <span
-          class="absolute opacity-0 group-hover/icon:opacity-100 group-focus-within/icon:opacity-100 -bottom-8 left-1/2 transform -translate-x-1/2 bg-gray-600 text-white text-xs px-2 py-1 rounded transition-opacity duration-200 whitespace-nowrap pointer-events-none"
+          class="absolute opacity-0 group-hover/icon:opacity-100 group-focus-within/icon:opacity-100 -bottom-8 left-1/2 transform -translate-x-1/2 bg-hover-background text-primary-light text-xs px-2 py-1 rounded transition-opacity duration-200 whitespace-nowrap pointer-events-none"
           aria-hidden="true"
         >
           Email Me
         </span>
       </li>
-      <li class="relative group/icon">
+      <li class="relative group/icon text-primary-light">
         <a
           href="https://www.linkedin.com/in/meelismumm/"
           target="_blank"
           class="group focus:outline-none focus:ring group-focus-within/icon:scale-[1.25]"
           aria-label="LinkedIn Profile"
         >
-          <img
-            src="/linkedin.svg"
-            alt="LinkedIn Icon"
+          <LinkedInIcon
+            stroke="currentColor"
             class="w-6 h-6 transform transition duration-300 group-hover/icon:-translate-y-1 group-hover/icon:scale-[1.25] group-focus-within/icon:-translate-y-1"
           />
         </a>
         <span
-          class="absolute opacity-0 group-hover/icon:opacity-100 group-focus-within/icon:opacity-100 -bottom-8 left-1/2 transform -translate-x-1/2 bg-gray-600 text-white text-xs px-2 py-1 rounded transition-opacity duration-200 whitespace-nowrap pointer-events-none"
+          class="absolute opacity-0 group-hover/icon:opacity-100 group-focus-within/icon:opacity-100 -bottom-8 left-1/2 transform -translate-x-1/2 bg-hover-background text-primary-light text-xs px-2 py-1 rounded transition-opacity duration-200 whitespace-nowrap pointer-events-none"
           aria-hidden="true"
         >
-          LinkedIn
+          My LinkedIn
         </span>
       </li>
-      <li class="relative group/icon">
+      <li class="relative group/icon text-primary-light">
         <a
           href="https://github.com/MeelisM"
           target="_blank"
           class="group focus:outline-none focus:ring group-focus-within/icon:scale-[1.25]"
           aria-label="GitHub Profile"
         >
-          <img
-            src="/github-mark.svg"
-            alt="GitHub Icon"
+          <GitHubIcon
+            stroke="currentColor"
             class="w-6 h-6 transform transition duration-300 group-hover/icon:-translate-y-1 group-hover/icon:scale-[1.25] group-focus-within/icon:-translate-y-1"
           />
         </a>
         <span
-          class="absolute opacity-0 group-hover/icon:opacity-100 group-focus-within/icon:opacity-100 -bottom-8 left-1/2 transform -translate-x-1/2 bg-gray-600 text-white text-xs px-2 py-1 rounded transition-opacity duration-200 whitespace-nowrap pointer-events-none"
+          class="absolute opacity-0 group-hover/icon:opacity-100 group-focus-within/icon:opacity-100 -bottom-8 left-1/2 transform -translate-x-1/2 bg-hover-background text-primary-light text-xs px-2 py-1 rounded transition-opacity duration-200 whitespace-nowrap pointer-events-none"
           aria-hidden="true"
         >
-          GitHub
+          My GitHub
         </span>
       </li>
     </ul>

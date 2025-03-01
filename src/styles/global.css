@@ -10,3 +10,14 @@
 body {
   font-family: 'Carlito', sans-serif;
 }
+
+@theme {
+  --color-primary: #9c9c9c;
+  --color-primary-light: #ffffff;
+  --color-secondary: #1e1f21;
+  --color-accent: #8a8a8a;
+  --color-background: #121314;
+  --color-icons: #1c398e;
+  --color-icons-light: #097c87;
+  --color-hover-background: #1c398e;
+}

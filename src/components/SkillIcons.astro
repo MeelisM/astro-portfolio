@@ -1,8 +1,32 @@
 ---
 import skillsData from "../content/skills.json";
 
-const { skills } = skillsData;
-const { filter = [] } = Astro.props;
+interface Skill {
+  name: string;
+  icon: string;
+}
+
+interface SkillsData {
+  skills: Skill[];
+}
+
+interface Props {
+  filter?: string[];
+  bgColor?: string;
+  bgHover?: string;
+  textHover?: string;
+  textColor?: string;
+}
+
+const { skills }: SkillsData = skillsData;
+
+const {
+  filter = [],
+  bgColor = "bg-icons",
+  bgHover = "hover:bg-primary-light",
+  textHover = "hover:text-icons",
+  textColor = "text-primary-light",
+}: Props = Astro.props;
 
 const filteredSkills =
   Array.isArray(filter) && filter.length > 0
@@ -14,7 +38,7 @@ const filteredSkills =
   {
     filteredSkills.map((skill) => (
       <li
-        class="inline-flex items-center px-2 py-1 rounded-[12px] bg-black text-white hover:bg-gray-600 transition-colors duration-200"
+        class={`inline-flex items-center px-2 py-1 rounded-[12px] ${bgColor} ${textColor} ${bgHover} ${textHover} text-primary transition-colors duration-300`}
         aria-label={skill.name}
       >
         <span class="mr-1 w-4 h-4" set:html={skill.icon} aria-hidden="true" />
