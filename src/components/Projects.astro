@@ -20,7 +20,7 @@ const { projects }: ProjectsData = projectsData;
   <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
     {projects.map((project) => (
 <div 
-  class="project-card group/project bg-secondary text-primary-light p-4 rounded-lg shadow-lg transition-all duration-300 relative focus-within:ring-2 focus-within:ring-blue-400 focus-within:outline-none hover:shadow-xl hover:scale-105 focus-within:shadow-xl focus-within:scale-105 flex flex-col h-full"
+  class="project-card group/project bg-tertiary-project text-secondary-project p-4 rounded-lg shadow-lg transition-all duration-300 relative focus-within:ring-2 focus-within:ring-blue-400 focus-within:outline-none hover:shadow-xl hover:scale-105 focus-within:shadow-xl focus-within:scale-105 flex flex-col h-full"
   tabindex="0"
   role="button"
   aria-labelledby={`project-title-${project.name}`}
@@ -43,7 +43,7 @@ const { projects }: ProjectsData = projectsData;
           class="w-6 h-6 transform transition duration-200 group-hover/icon:-translate-y-1 group-hover/icon:scale-125 group-focus-within/icon:-translate-y-1 group-focus-within/icon:scale-125" 
         />
         <span 
-          class="absolute opacity-0 group-hover/icon:opacity-100 group-focus-within/icon:opacity-100 -bottom-0 right-8 bg-hover-background text-primary-light text-xs px-2 py-1 rounded transition-opacity duration-200 whitespace-nowrap pointer-events-none"
+          class="absolute opacity-0 group-hover/icon:opacity-100 group-hover/icon:animate-wiggle group-focus-within/icon:animate-wiggle group-focus-within/icon:opacity-100 -bottom-0 right-8 bg-primary-tooltip text-primary-light text-xs px-2 py-1 rounded transition-opacity duration-200 whitespace-nowrap pointer-events-none"
           role="tooltip"
         >
           View on GitHub
@@ -53,13 +53,13 @@ const { projects }: ProjectsData = projectsData;
   </div>
 
   <!-- Project Description -->
-  <p class="text-sm text-primary mb-2">
+  <p class="text-sm text-primary-project mb-2">
     {project.description}
   </p>
 
   <!-- Tech Used -->
   <div class="mt-auto">
-  <SkillIcons bgColor="bg-secondary" bgHover="hover:bg-icons" textHover="hover:text-primary-light" textColor="text-primary-light" filter={project.techUsed} />
+  <SkillIcons bgColor="bg-primary-badge-project" bgHover="hover:bg-secondary-badge-project" textHover="hover:text-primary-badge-project" textColor="text-secondary-badge-project" filter={project.techUsed} />
   </div>
 </div>
 

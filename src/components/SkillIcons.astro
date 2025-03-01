@@ -22,10 +22,10 @@ const { skills }: SkillsData = skillsData;
 
 const {
   filter = [],
-  bgColor = "bg-icons",
-  bgHover = "hover:bg-primary-light",
-  textHover = "hover:text-icons",
-  textColor = "text-primary-light",
+  bgColor = "bg-primary-badge",
+  bgHover = "hover:bg-secondary-badge",
+  textHover = "hover:text-primary-badge",
+  textColor = "text-secondary-badge",
 }: Props = Astro.props;
 
 const filteredSkills =
@@ -38,7 +38,7 @@ const filteredSkills =
   {
     filteredSkills.map((skill) => (
       <li
-        class={`inline-flex items-center px-2 py-1 rounded-[12px] ${bgColor} ${textColor} ${bgHover} ${textHover} text-primary transition-colors duration-300`}
+        class={`inline-flex items-center px-2 py-1 rounded-[12px] ${bgColor} ${textColor} ${bgHover} ${textHover} text-primary`}
         aria-label={skill.name}
       >
         <span class="mr-1 w-4 h-4" set:html={skill.icon} aria-hidden="true" />

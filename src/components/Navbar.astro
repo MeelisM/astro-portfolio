@@ -3,6 +3,31 @@ import GitHubIcon from "../assets/github-mark.svg";
 import EmailIcon from "../assets/email.svg";
 import LinkedInIcon from "../assets/linkedin.svg";
 import FavIcon from "../assets/favicon.svg";
+import socialLinksData from "../content/socialLinks.json";
+
+const title: string = "meelis.dev";
+
+const iconMap = {
+  EmailIcon,
+  LinkedInIcon,
+  GitHubIcon,
+};
+
+type IconName = keyof typeof iconMap;
+
+interface SocialLink {
+  name: string;
+  href: string;
+  iconName: IconName;
+  external: boolean;
+}
+
+const typedSocialLinksData = socialLinksData as SocialLink[];
+
+const socialLinks = typedSocialLinksData.map((link) => ({
+  ...link,
+  icon: iconMap[link.iconName],
+}));
 ---
 
 <nav class="w-full" aria-label="Main Navigation">
@@ -11,72 +36,41 @@ import FavIcon from "../assets/favicon.svg";
       <FavIcon
         fill="currentColor"
         aria-hidden="true"
-        class="w-6 h-6 transform transition duration-300 hover:-translate-y-1 hover:scale-[1.25] text-icons"
+        class="w-6 h-6 transform transition duration-300 hover:-translate-y-1 hover:scale-[1.25] text-primary-logo"
       />
+
       <a
         href="/"
-        class="text-lg font-bold underline decoration-solid focus:outline-none focus:ring text-primary-light"
+        class="text-lg font-bold underline decoration-solid focus:outline-none focus:ring
+      text-primary-nav"
       >
-        meelis.dev
+        {title}
       </a>
     </div>
     <ul class="flex space-x-6">
-      <li class="relative group/icon text-primary-light">
-        <a
-          href="mailto:meelis.developer@gmail.com"
-          class="group focus:outline-none focus:ring group-focus-within/icon:scale-[1.25]"
-          aria-label="Email Me"
-        >
-          <EmailIcon
-            stroke="currentColor"
-            class="w-6 h-6 transform transition duration-300 group-hover/icon:-translate-y-1 group-hover/icon:scale-[1.25] group-focus-within/icon:-translate-y-1"
-          />
-        </a>
-        <span
-          class="absolute opacity-0 group-hover/icon:opacity-100 group-focus-within/icon:opacity-100 -bottom-8 left-1/2 transform -translate-x-1/2 bg-hover-background text-primary-light text-xs px-2 py-1 rounded transition-opacity duration-200 whitespace-nowrap pointer-events-none"
-          aria-hidden="true"
-        >
-          Email Me
-        </span>
-      </li>
-      <li class="relative group/icon text-primary-light">
-        <a
-          href="https://www.linkedin.com/in/meelismumm/"
-          target="_blank"
-          class="group focus:outline-none focus:ring group-focus-within/icon:scale-[1.25]"
-          aria-label="LinkedIn Profile"
-        >
-          <LinkedInIcon
-            stroke="currentColor"
-            class="w-6 h-6 transform transition duration-300 group-hover/icon:-translate-y-1 group-hover/icon:scale-[1.25] group-focus-within/icon:-translate-y-1"
-          />
-        </a>
-        <span
-          class="absolute opacity-0 group-hover/icon:opacity-100 group-focus-within/icon:opacity-100 -bottom-8 left-1/2 transform -translate-x-1/2 bg-hover-background text-primary-light text-xs px-2 py-1 rounded transition-opacity duration-200 whitespace-nowrap pointer-events-none"
-          aria-hidden="true"
-        >
-          My LinkedIn
-        </span>
-      </li>
-      <li class="relative group/icon text-primary-light">
-        <a
-          href="https://github.com/MeelisM"
-          target="_blank"
-          class="group focus:outline-none focus:ring group-focus-within/icon:scale-[1.25]"
-          aria-label="GitHub Profile"
-        >
-          <GitHubIcon
-            stroke="currentColor"
-            class="w-6 h-6 transform transition duration-300 group-hover/icon:-translate-y-1 group-hover/icon:scale-[1.25] group-focus-within/icon:-translate-y-1"
-          />
-        </a>
-        <span
-          class="absolute opacity-0 group-hover/icon:opacity-100 group-focus-within/icon:opacity-100 -bottom-8 left-1/2 transform -translate-x-1/2 bg-hover-background text-primary-light text-xs px-2 py-1 rounded transition-opacity duration-200 whitespace-nowrap pointer-events-none"
-          aria-hidden="true"
-        >
-          My GitHub
-        </span>
-      </li>
+      {
+        socialLinks.map(({ name, href, icon: Icon, external }) => (
+          <li class="relative group text-primary-nav hover:animate-wiggle focus-within:animate-wiggle">
+            <a
+              href={href}
+              {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+              class="focus:outline-none focus:ring group-focus-within:scale-[1.25]"
+              aria-label={name}
+            >
+              <Icon
+                stroke="currentColor"
+                class="w-6 h-6 transform transition duration-300 group-hover:-translate-y-1 group-hover:scale-[1.25] group-focus-within:-translate-y-1"
+              />
+            </a>
+            <span
+              class="absolute opacity-0 group-hover:opacity-100 group-focus-within:opacity-100 -bottom-8 left-1/2 transform -translate-x-1/2 bg-primary-tooltip text-secondary-tooltip text-xs px-2 py-1 rounded transition-opacity duration-200 whitespace-nowrap pointer-events-none"
+              aria-hidden="true"
+            >
+              {name}
+            </span>
+          </li>
+        ))
+      }
     </ul>
   </div>
 </nav>

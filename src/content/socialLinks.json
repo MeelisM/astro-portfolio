@@ -1,0 +1,20 @@
+[
+    {
+      "name": "Email Me",
+      "href": "mailto:meelis.developer@gmail.com",
+      "iconName": "EmailIcon",
+      "external": false
+    },
+    {
+      "name": "LinkedIn",
+      "href": "https://www.linkedin.com/in/meelismumm/",
+      "iconName": "LinkedInIcon",
+      "external": true
+    },
+    {
+      "name": "GitHub",
+      "href": "https://github.com/MeelisM",
+      "iconName": "GitHubIcon",
+      "external": true
+    }
+  ]
