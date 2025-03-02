@@ -9,27 +9,27 @@ import Projects from "../components/Projects.astro";
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <meta
-      name="description"
       content="Explore my personal portfolio built with Astro and Tailwind CSS, featuring automated AWS S3 infrastructure provisioning 
         using Terraform (IaC) and streamlined CI/CD via GitHub Actions."
+      name="description"
     />
     <title>meelis.dev</title>
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link href="/favicon.svg" rel="icon" type="image/svg+xml" />
     <link
-      rel="preload"
-      href="/fonts/Carlito-Regular.woff2"
       as="font"
-      type="font/woff2"
       crossorigin="anonymous"
+      href="/fonts/Carlito-Regular.woff2"
+      rel="preload"
+      type="font/woff2"
     />
   </head>
   <body class="min-h-screen flex flex-col text-primary bg-background">
     <!-- Skip Link -->
     <a
-      href="#main-content"
       class="sr-only focus:not-sr-only absolute top-4 left-4 bg-primary text-secondary-project px-4 py-2 rounded shadow-md text-center"
+      href="#main-content"
     >
       Skip to main content
     </a>
@@ -42,13 +42,13 @@ import Projects from "../components/Projects.astro";
     </header>
 
     <!-- Main Content Wrapper -->
-    <main id="main-content" role="main" class="flex-1 max-w-4xl mx-auto px-4">
-      <section id="Projects" class="border-b border-accent py-4" aria-labelledby="projects-heading">
-        <h2 id="projects-heading" class="sr-only">Projects</h2>
+    <main class="flex-1 max-w-4xl mx-auto px-4" id="main-content" role="main">
+      <section aria-labelledby="projects-heading" class="border-b border-accent py-4" id="Projects">
+        <h2 class="sr-only" id="projects-heading">Projects</h2>
         <Projects />
       </section>
-      <section id="Skills" class="py-4" aria-labelledby="skills-heading">
-        <h2 id="skills-heading" class="sr-only">Skills</h2>
+      <section aria-labelledby="skills-heading" class="py-4" id="Skills">
+        <h2 class="sr-only" id="skills-heading">Skills</h2>
         <Skills />
       </section>
     </main>
