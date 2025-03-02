@@ -38,10 +38,16 @@ const filteredSkills =
   {
     filteredSkills.map((skill) => (
       <li
-        class={`inline-flex items-center px-2 py-1 rounded-[12px] ${bgColor} ${textColor} ${bgHover} ${textHover} text-primary`}
         aria-label={skill.name}
+        class:list={{
+          "inline-flex items-center px-2 py-1 rounded-[12px] text-primary": true,
+          [bgColor]: !!bgColor,
+          [textColor]: !!textColor,
+          [bgHover]: !!bgHover,
+          [textHover]: !!textHover,
+        }}
       >
-        <span class="mr-1 w-4 h-4" set:html={skill.icon} aria-hidden="true" />
+        <span aria-hidden="true" class="mr-1 w-4 h-4" set:html={skill.icon} />
         <span class="text-sm">{skill.name}</span>
       </li>
     ))
