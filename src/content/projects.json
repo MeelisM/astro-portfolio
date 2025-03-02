@@ -2,14 +2,14 @@
   "projects": [
     {
       "name": "Portfolio",
-      "description": "A fast and modern portfolio built with Astro and TailwindCSS. Uses Infrastructure as Code (IaC) with Terraform to automate AWS S3 provisioning, configure CloudFront for optimized content delivery, integrate Cloudflare DNS and implement OIDC authentication for GitHub Actions, enabling secure and automated CI/CD deployments.",
+      "description": "A fast portfolio website built with Astro and Tailwind CSS. Infrastructure automation is achieved using Terraform, which provisions AWS S3, configures CloudFront for content delivery, integrates Cloudflare DNS and sets up OIDC authentication for GitHub Actions CI/CD. ",
       "techUsed": ["Astro", "Tailwind CSS", "TypeScript", "Amazon S3", "Terraform"],
       "features": ["Static site built with Astro and Tailwind CSS.", "Automated infrastructure provisioning using Terraform.", "Secure CloudFront distribution with Cloudflare DNS.", "Secure CI/CD pipeline with OIDC-authenticated GitHub Actions."],
       "link": "https://github.com/MeelisM/meelis.dev"
     },
     {
       "name": "VMicroServices",
-      "description": "A microservices-based project that runs in a virtualized environment using Vagrant and VirtualBox. It includes an API Gateway, Inventory Service, Billing Service, and RabbitMQ for asynchronous messaging. Both development and production environments are fully automated using scripts.",
+      "description": "A microservices-based project that runs in a virtualized environment using Vagrant and VirtualBox. It includes an API Gateway, Inventory Service, Billing Service and RabbitMQ for asynchronous messaging. Both development and production environments are fully automated using scripts.",
       "techUsed": ["Node.js", "PostgreSQL", "Vagrant", "Postman", "VirtualBox", "PM2"],
       "features": ["Virtualized infrastructure using Vagrant and VirtualBox.", "Comprehensive Postman collections for testing API endpoints.", "RabbitMQ for asynchronous message processing.", "Automated setup with database migrations."],
       "link": "https://github.com/MeelisM/VMicroServices"
