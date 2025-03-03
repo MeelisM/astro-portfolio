@@ -21,12 +21,11 @@ const { projects }: ProjectsData = projectsData;
   <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
     {projects.map((project: Project) => (
 <div 
-  class="project-card group/project bg-tertiary-project text-secondary-project p-4 rounded-lg shadow-lg transition-all duration-300 relative focus-within:ring-2 focus-within:ring-primary-logo focus-within:outline-none hover:shadow-xl hover:scale-102 focus-within:shadow-xl focus-within:scale-102 flex flex-col h-full"
+  class="project-card group/project bg-tertiary-project text-secondary-project p-4 rounded-lg transition-all duration-300 relative focus-within:ring-2 focus-within:ring-primary-logo focus-within:outline-none hover:shadow-xl hover:scale-102 focus-within:shadow-xl focus-within:scale-102 flex flex-col h-full"
   tabindex="0"
   role="button"
   aria-labelledby={`project-title-${project.name}`}
 >
-
   <!-- Project Title & Link -->
   <div class="flex justify-between items-center mb-2">
     <h3 id={`project-title-${project.name}`} class="text-xl font-semibold">{project.name}</h3>
@@ -72,7 +71,6 @@ const { projects }: ProjectsData = projectsData;
   <SkillIcons bgColor="bg-primary-badge-project" bgHover="hover:bg-secondary-badge-project" textHover="hover:text-primary-badge-project" textColor="text-secondary-badge-project" filter={project.techUsed} />
   </div>
 </div>
-
     ))}
   </div>
 </section>

@@ -1,14 +1,14 @@
 @import "tailwindcss";
 
 @font-face {
-  font-family: 'Carlito';
-  src: url('/fonts/Carlito-Regular.woff2') format('woff2');
+  font-family: "Carlito";
+  src: url("/fonts/Carlito-Regular.woff2") format("woff2");
   font-weight: 400;
   font-display: swap;
 }
 
 body {
-  font-family: 'Carlito', sans-serif;
+  font-family: "Carlito", sans-serif;
 }
 
 @theme {
@@ -26,7 +26,20 @@ body {
   --color-secondary-badge-project: #ffffff;
   --color-primary-nav: #ffffff;
   --color-primary-footer: #ffffff;
+  --color-primary-hero: #ffffff;
 
+  --animate-wiggle: wiggle 3s ease-in-out infinite;
 
-  --animate-wiggle: wiggle 3s ease-in-out infinite;  @keyframes wiggle {    0%,    100% {      transform: rotate(-3deg);    }    50% {      transform: rotate(3deg);    }  }
+  @keyframes wiggle {
+    0%,
+    100% {
+      transform: rotate(-3deg);
+    }
+
+    50% {
+      transform: rotate(3deg);
+    }
+  }
+
+  --animate-blink: blink 0.8s infinite;
 }

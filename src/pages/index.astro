@@ -2,8 +2,9 @@
 import "../styles/global.css";
 import Navbar from "../components/Navbar.astro";
 import Footer from "../components/Footer.astro";
-import Skills from "../components/Skills.astro";
+import SkillIcons from "../components/SkillIcons.astro";
 import Projects from "../components/Projects.astro";
+import Hero from "../components/Hero.astro";
 ---
 
 <html lang="en">
@@ -43,13 +44,17 @@ import Projects from "../components/Projects.astro";
 
     <!-- Main Content Wrapper -->
     <main id="main-content" role="main" class="flex-1 max-w-4xl mx-auto px-4">
-      <section id="Projects" class="border-b border-accent py-4" aria-labelledby="projects-heading">
+      <section id="Hero" class="py-5" aria-labelledby="hero-title">
+        <h2 id="hero-heading" class="sr-only">Hero Section</h2>
+        <Hero />
+      </section>
+      <section id="Projects" class="pb-5" aria-labelledby="projects-heading">
         <h2 id="projects-heading" class="sr-only">Projects</h2>
         <Projects />
       </section>
-      <section id="Skills" class="py-4" aria-labelledby="skills-heading">
-        <h2 id="skills-heading" class="sr-only">Skills</h2>
-        <Skills />
+      <section aria-labelledby="skills-heading" class="pb-5" id="Skills">
+        <h2 class="sr-only" id="skills-heading">Skills</h2>
+        <SkillIcons class="justify-center" />
       </section>
     </main>
 
