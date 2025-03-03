@@ -43,13 +43,13 @@ import Hero from "../components/Hero.astro";
     </header>
 
     <!-- Main Content Wrapper -->
-    <main id="main-content" role="main" class="flex-1 max-w-4xl mx-auto px-4">
-      <section id="Hero" class="py-5" aria-labelledby="hero-title">
-        <h2 id="hero-heading" class="sr-only">Hero Section</h2>
+    <main class="flex-1 max-w-4xl mx-auto px-4" id="main-content" role="main">
+      <section aria-labelledby="hero-title" class="py-5" id="Hero">
+        <h2 class="sr-only" id="hero-heading">Hero Section</h2>
         <Hero />
       </section>
-      <section id="Projects" class="pb-5" aria-labelledby="projects-heading">
-        <h2 id="projects-heading" class="sr-only">Projects</h2>
+      <section aria-labelledby="projects-heading" class="pb-5" id="Projects">
+        <h2 class="sr-only" id="projects-heading">Projects</h2>
         <Projects />
       </section>
       <section aria-labelledby="skills-heading" class="pb-5" id="Skills">

@@ -36,7 +36,7 @@ const filteredSkills =
     : skills;
 ---
 
-<ul class={`flex flex-wrap gap-1 ${customClass}`}>
+<ul class:list={`flex flex-wrap gap-1 ${customClass}`}>
   {
     filteredSkills.map((skill) => (
       <li

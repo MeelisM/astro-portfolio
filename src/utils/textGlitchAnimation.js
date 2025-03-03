@@ -1,8 +1,12 @@
-export function initTextGlitchAnimation(canvasId: string) {
+/*
+In JS currently because linter was screaming about random 
+unexpected token problem that I couldn't solve.
+*/
+export function initTextGlitchAnimation(canvasId) {
   if (typeof document === "undefined") return;
 
   document.addEventListener("DOMContentLoaded", () => {
-    const canvas = document.getElementById(canvasId) as HTMLCanvasElement | null;
+    const canvas = document.getElementById(canvasId);
     const container = canvas?.parentElement;
 
     if (!canvas || !container) {
@@ -25,7 +29,7 @@ export function initTextGlitchAnimation(canvasId: string) {
     let fontSize = 12;
     let columns = 0;
     let rows = 0;
-    let grid: { char: string; opacity: number }[][] = [];
+    let grid = [];
 
     const characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*";
 
@@ -62,7 +66,8 @@ export function initTextGlitchAnimation(canvasId: string) {
           }
 
           ctx.fillStyle = `rgba(28, 57, 142, ${grid[y][x].opacity})`;
-          ctx.fillText(grid[y][x].char, x * fontSize + fontSize / 2, (y + 1) * fontSize);        }
+          ctx.fillText(grid[y][x].char, x * fontSize + fontSize / 2, (y + 1) * fontSize);
+        }
       }
 
       requestAnimationFrame(drawAnimation);
