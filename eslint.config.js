@@ -16,7 +16,6 @@ export default [
       "astro/jsx-a11y/interactive-supports-focus": "error",
       "astro/jsx-a11y/control-has-associated-label": "error",
       "astro/jsx-a11y/no-static-element-interactions": "error",
-      
     },
   },
 ];

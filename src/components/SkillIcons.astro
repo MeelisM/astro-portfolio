@@ -16,6 +16,7 @@ interface Props {
   bgHover?: string;
   textHover?: string;
   textColor?: string;
+  class?: string;
 }
 
 const { skills }: SkillsData = skillsData;
@@ -26,6 +27,7 @@ const {
   bgHover = "hover:bg-secondary-badge",
   textHover = "hover:text-primary-badge",
   textColor = "text-secondary-badge",
+  class: customClass = "",
 }: Props = Astro.props;
 
 const filteredSkills =
@@ -34,7 +36,7 @@ const filteredSkills =
     : skills;
 ---
 
-<ul class="flex flex-wrap gap-1">
+<ul class:list={`flex flex-wrap gap-1 ${customClass}`}>
   {
     filteredSkills.map((skill) => (
       <li
