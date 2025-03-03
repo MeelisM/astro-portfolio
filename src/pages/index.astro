@@ -10,27 +10,27 @@ import Hero from "../components/Hero.astro";
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <meta
-      name="description"
       content="Explore my personal portfolio built with Astro and Tailwind CSS, featuring automated AWS S3 infrastructure provisioning 
         using Terraform (IaC) and streamlined CI/CD via GitHub Actions."
+      name="description"
     />
     <title>meelis.dev</title>
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link href="/favicon.svg" rel="icon" type="image/svg+xml" />
     <link
-      rel="preload"
-      href="/fonts/Carlito-Regular.woff2"
       as="font"
-      type="font/woff2"
       crossorigin="anonymous"
+      href="/fonts/Carlito-Regular.woff2"
+      rel="preload"
+      type="font/woff2"
     />
   </head>
   <body class="min-h-screen flex flex-col text-primary bg-background">
     <!-- Skip Link -->
     <a
-      href="#main-content"
       class="sr-only focus:not-sr-only absolute top-4 left-4 bg-primary text-secondary-project px-4 py-2 rounded shadow-md text-center"
+      href="#main-content"
     >
       Skip to main content
     </a>
