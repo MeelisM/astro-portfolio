@@ -151,7 +151,7 @@ resource "aws_cloudfront_response_headers_policy" "csp_policy" {
   security_headers_config {
     content_security_policy {
       override = true
-      content_security_policy = "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self' data:; object-src 'none'; base-uri 'self'; frame-ancestors 'none';"
+      content_security_policy = "default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self'; font-src 'self'; object-src 'none'; base-uri 'self'; frame-ancestors 'none';"
     }
   }
 }

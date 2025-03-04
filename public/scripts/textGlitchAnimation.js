@@ -1,8 +1,19 @@
+export function TextGlitchAnimation() {
+  if (typeof window === "undefined" || typeof document === "undefined") return;
 
-if (typeof window !== "undefined") {
-document.addEventListener("DOMContentLoaded", () => {
+  ("use strict");
+
   const canvas = document.getElementById("textGlitchCanvas");
+  if (!canvas) {
+    console.error("Canvas element not found");
+    return;
+  }
+
   const ctx = canvas.getContext("2d");
+  if (!ctx) {
+    console.error("Unable to get 2D rendering context");
+    return;
+  }
 
   const fontSize = 16;
   let columns, rows;
@@ -17,37 +28,40 @@ document.addEventListener("DOMContentLoaded", () => {
   let phase = "appearing-welcome";
   let letterIndex = 0;
   let animationStartTime = Date.now();
-  let letterSpeed = 300;
-  let wordStayDuration = 2000;
+  const letterSpeed = 300;
+  const wordStayDuration = 2000;
+
+  const characterSet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*".split("");
+
+  function randomChar() {
+    return characterSet[Math.floor(Math.random() * characterSet.length)];
+  }
 
   function resizeCanvas() {
-    canvas.width = canvas.parentElement.clientWidth;
-    canvas.height = canvas.parentElement.clientHeight;
+    const parent = canvas.parentElement;
+    if (!parent) return;
+
+    canvas.width = parent.clientWidth;
+    canvas.height = parent.clientHeight;
 
     columns = Math.floor(canvas.width / fontSize);
     rows = Math.floor(canvas.height / fontSize);
 
-    if (grid.length === 0) {
-      setupGrid();
-    } else {
-      maintainGrid();
+    grid = grid.length === 0 ? setupGrid() : maintainGrid();
 
-      applyWordPositions();
-    }
+    applyWordPositions();
   }
 
   function maintainGrid() {
-    let newGrid = Array.from({ length: rows }, (_, y) =>
-      Array.from({ length: columns }, (_, x) => {
-        return grid[y] && grid[y][x] ? grid[y][x] : { char: randomChar(), opacity: Math.random() };
-      })
+    return Array.from({ length: rows }, (_, y) =>
+      Array.from({ length: columns }, (_, x) =>
+        grid[y] && grid[y][x] ? grid[y][x] : { char: randomChar(), opacity: Math.random() }
+      )
     );
-
-    grid = newGrid;
   }
 
   function setupGrid() {
-    grid = Array.from({ length: rows }, () =>
+    const newGrid = Array.from({ length: rows }, () =>
       Array.from({ length: columns }, () => ({
         char: randomChar(),
         opacity: Math.random(),
@@ -57,6 +71,8 @@ document.addEventListener("DOMContentLoaded", () => {
     if (wordPositions[0].x === 0 && wordPositions[0].y === 0) {
       randomizeWordPositions();
     }
+
+    return newGrid;
   }
 
   function applyWordPositions() {
@@ -74,7 +90,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     for (let y = 0; y < rows; y++) {
       for (let x = 0; x < columns; x++) {
-        if (Math.random() > 0.99) {
+        if (Math.random() > 0.995) {
           grid[y][x] = { char: randomChar(), opacity: Math.random() };
         }
         ctx.fillStyle = `rgba(28, 57, 142, ${grid[y][x].opacity})`;
@@ -91,26 +107,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     words.forEach((word, index) => {
       let { x, y } = wordPositions[index];
-      let lettersToShow = "";
-
-      if (phase === "appearing-welcome" && index === 0) {
-        lettersToShow = word.slice(0, letterIndex);
-      } else if (phase === "appearing-dynamic") {
-        lettersToShow = words[0];
-        if (index === 1) lettersToShow = word.slice(0, letterIndex);
-      } else if (phase === "visible") {
-        lettersToShow = word;
-      } else if (phase === "disappearing-welcome") {
-        if (index === 0) {
-          lettersToShow = word.slice(0, letterIndex);
-        } else {
-          lettersToShow = words[1];
-        }
-      } else if (phase === "disappearing-dynamic") {
-        if (index === 1) {
-          lettersToShow = word.slice(0, letterIndex);
-        }
-      }
+      let lettersToShow = getLettersToShow(word, index);
 
       for (let i = 0; i < lettersToShow.length; i++) {
         ctx.fillText(lettersToShow[i], (x + i) * fontSize + fontSize / 2, (y + 1) * fontSize);
@@ -118,8 +115,25 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
+  function getLettersToShow(word, index) {
+    switch (phase) {
+      case "appearing-welcome":
+        return index === 0 ? word.slice(0, letterIndex) : "";
+      case "appearing-dynamic":
+        return index === 0 ? words[0] : word.slice(0, letterIndex);
+      case "visible":
+        return word;
+      case "disappearing-welcome":
+        return index === 0 ? word.slice(0, letterIndex) : words[1];
+      case "disappearing-dynamic":
+        return index === 1 ? word.slice(0, letterIndex) : "";
+      default:
+        return "";
+    }
+  }
+
   function randomizeWordPositions() {
-    let position1 = {
+    const position1 = {
       x: Math.floor(Math.random() * (columns - words[0].length)),
       y: Math.floor(Math.random() * rows),
     };
@@ -140,66 +154,79 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function updateAnimation() {
-    let elapsed = Date.now() - animationStartTime;
+    const elapsed = Date.now() - animationStartTime;
 
-    if (phase === "appearing-welcome") {
-      if (elapsed > letterSpeed && letterIndex < words[0].length) {
-        letterIndex++;
-        animationStartTime = Date.now();
-      } else if (letterIndex >= words[0].length) {
-        phase = "appearing-dynamic";
-        letterIndex = 0;
-        animationStartTime = Date.now();
-      }
-    } else if (phase === "appearing-dynamic") {
-      if (elapsed > letterSpeed && letterIndex < words[1].length) {
-        letterIndex++;
-        animationStartTime = Date.now();
-      } else if (letterIndex >= words[1].length) {
-        phase = "visible";
-        animationStartTime = Date.now();
-      }
-    } else if (phase === "visible") {
-      if (elapsed > wordStayDuration) {
-        phase = "disappearing-welcome";
-        letterIndex = words[0].length;
-        animationStartTime = Date.now();
-      }
-    } else if (phase === "disappearing-welcome") {
-      if (elapsed > letterSpeed && letterIndex > 0) {
-        letterIndex--;
-        animationStartTime = Date.now();
-      } else if (letterIndex === 0) {
-        phase = "disappearing-dynamic";
-        letterIndex = words[1].length;
-        animationStartTime = Date.now();
-      }
-    } else if (phase === "disappearing-dynamic") {
-      if (elapsed > letterSpeed && letterIndex > 0) {
-        letterIndex--;
-        animationStartTime = Date.now();
-      } else if (letterIndex === 0) {
-        phase = "hidden";
-        animationStartTime = Date.now();
-      }
-    } else if (phase === "hidden") {
-      if (elapsed > wordStayDuration) {
-        phase = "appearing-welcome";
-        letterIndex = 0;
-        randomizeWordPositions();
-        animationStartTime = Date.now();
-      }
+    switch (phase) {
+      case "appearing-welcome":
+        if (elapsed > letterSpeed && letterIndex < words[0].length) {
+          letterIndex++;
+          animationStartTime = Date.now();
+        } else if (letterIndex >= words[0].length) {
+          phase = "appearing-dynamic";
+          letterIndex = 0;
+          animationStartTime = Date.now();
+        }
+        break;
+      case "appearing-dynamic":
+        if (elapsed > letterSpeed && letterIndex < words[1].length) {
+          letterIndex++;
+          animationStartTime = Date.now();
+        } else if (letterIndex >= words[1].length) {
+          phase = "visible";
+          animationStartTime = Date.now();
+        }
+        break;
+      case "visible":
+        if (elapsed > wordStayDuration) {
+          phase = "disappearing-welcome";
+          letterIndex = words[0].length;
+          animationStartTime = Date.now();
+        }
+        break;
+      case "disappearing-welcome":
+        if (elapsed > letterSpeed && letterIndex > 0) {
+          letterIndex--;
+          animationStartTime = Date.now();
+        } else if (letterIndex === 0) {
+          phase = "disappearing-dynamic";
+          letterIndex = words[1].length;
+          animationStartTime = Date.now();
+        }
+        break;
+      case "disappearing-dynamic":
+        if (elapsed > letterSpeed && letterIndex > 0) {
+          letterIndex--;
+          animationStartTime = Date.now();
+        } else if (letterIndex === 0) {
+          phase = "hidden";
+          animationStartTime = Date.now();
+        }
+        break;
+      case "hidden":
+        if (elapsed > wordStayDuration) {
+          phase = "appearing-welcome";
+          letterIndex = 0;
+          randomizeWordPositions();
+          animationStartTime = Date.now();
+        }
+        break;
     }
   }
 
-  function randomChar() {
-    const characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*";
-    return characters[Math.floor(Math.random() * characters.length)];
+  function cleanup() {
+    window.removeEventListener("resize", resizeCanvas);
   }
 
   resizeCanvas();
   window.addEventListener("resize", resizeCanvas);
+
   requestAnimationFrame(drawAnimation);
-  setInterval(updateAnimation, 100);
-});
+
+  function animationLoop() {
+    updateAnimation();
+    requestAnimationFrame(animationLoop);
+  }
+  requestAnimationFrame(animationLoop);
+
+  return cleanup;
 }
