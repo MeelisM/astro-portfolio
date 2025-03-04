@@ -1,9 +1,13 @@
+---
+import TextGlitch from "./TextGlitch.astro";
+---
+
 <section
   class="w-full flex flex-col md:flex-row items-center justify-between gap-6 text-primary-hero"
 >
   <div class="flex-1 flex flex-col items-center md:items-start text-center md:text-left">
     <h1 class="text-3xl font-bold text-primary" id="hero-heading">Meelis Mumm</h1>
-    <h2 class="text-xl text-secondary font-medium mt-2">Junior Software Engineer</h2>
+    <h2 class="text-xl text-secondary font-medium mt-2">Software Engineer</h2>
     <p class="text-md text-secondary mt-4">
       Specializing in DevOps, cloud infrastructure and automation. Focused on scalable systems and
       efficient workflows.
@@ -11,9 +15,6 @@
   </div>
 
   <div class="flex-1 relative w-full min-h-34 overflow-hidden">
-    <div class="absolute inset-0">
-      <canvas aria-hidden="true" class="w-full h-full" id="textGlitchCanvas"></canvas>
-    </div>
+    <TextGlitch />
   </div>
 </section>
-<script is:inline src="/textGlitchAnimation.js"></script>
