@@ -1,7 +1,3 @@
----
-import TextGlitch from "./TextGlitch.astro";
----
-
 <section
   class="w-full flex flex-col md:flex-row items-center justify-between gap-6 text-primary-hero"
 >
@@ -15,6 +11,9 @@ import TextGlitch from "./TextGlitch.astro";
   </div>
 
   <div class="flex-1 relative w-full min-h-34 overflow-hidden">
-    <TextGlitch />
+    <div class="absolute inset-0">
+      <canvas aria-hidden="true" class="w-full h-full" id="textGlitchCanvas"></canvas>
+    </div>
   </div>
 </section>
+<script src="scripts/textGlitchAnimation.js" defer></script>
