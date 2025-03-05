@@ -29,10 +29,10 @@ This repository contains the source code for my Astro + Tailwind CSS portfolio w
 
 ### 1️⃣ Prerequisites
 
-Ensure you have the following installed:
+Tested on:
 
-- Node.js (for Astro development).
-- Terraform (for infrastructure).
+- Node.js 22+ (for Astro development).
+- Terraform v1.11.0+ (for infrastructure).
 - AWS CLI (configured with appropriate IAM permissions).
 - Cloudflare API token (for DNS management).
 
@@ -70,7 +70,40 @@ Your site will be available at [http://localhost:4321](http://localhost:4321)
 
 ## 🌍 Deployment
 
-### 1️⃣ Infrastructure Setup (Terraform)
+### 1️⃣ Deploying to GitHub Pages or Cloudflare Pages
+
+You can deploy the site directly to **GitHub Pages** or **CloudFlare Pages** without needing to set up AWS or Terraform.
+
+#### GitHub Pages
+
+Ensure the project is ready to be deployed by running the build command:
+
+```bash
+npm run build
+```
+
+Push the `dist`folder to your repository's `gh-pages`branch (if not already set up).
+
+```bash
+git subtree push --prefix dist origin gh-pages
+```
+
+Your site should now be available at `https://<your-username>.github.io/<your-repository-name>`
+
+#### Cloudflare Pages
+
+- Go to Cloudflare Pages and create a new project.
+- Connect your GitHub repository.
+- For **Build Command**, use:
+
+```bash
+npm run build
+```
+
+- Set the Built Output Directory to `dist`.
+- Click `Deploy` to publish your site!
+
+### 2️⃣ Infrastructure Setup (Terraform)
 
 Note: Ensure `terraform/terraform.tfvars` is configured before running Terraform.
 
