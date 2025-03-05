@@ -29,7 +29,7 @@ You can also deploy the site directly to **GitHub Pages** or **CloudFlare Pages*
 
 ## 🚀 Getting Started
 
-### 1️⃣ Prerequisites
+### Prerequisites
 
 Tested on:
 
@@ -38,7 +38,7 @@ Tested on:
 - AWS CLI (configured with appropriate IAM permissions).
 - Cloudflare API token (for DNS management).
 
-### 2️⃣ Local Development
+### Local Development
 
 Clone the repository:
 
@@ -72,7 +72,7 @@ Your site will be available at [http://localhost:4321](http://localhost:4321)
 
 ## 🌍 Deployment
 
-### 1️⃣ Infrastructure Setup (Terraform)
+### Infrastructure Setup (Terraform)
 
 Note: Ensure `terraform/terraform.tfvars` is configured before running Terraform. Terraform will provision several resources:
 
@@ -98,7 +98,7 @@ terraform apply
 
 This will provision the resources listed above, ensuring a smooth and secure deployment pipeline with full infrastructure as code.
 
-### 2️⃣ Deploying Website
+### Deploying Website
 
 This project uses GitHub Actions for deployment. Pushing changes to the `main` branch will trigger the deployment workflow.
 
