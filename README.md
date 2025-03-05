@@ -74,7 +74,13 @@ Your site will be available at [http://localhost:4321](http://localhost:4321)
 
 ### 1️⃣ Infrastructure Setup (Terraform)
 
-Note: Ensure `terraform/terraform.tfvars` is configured before running Terraform.
+Note: Ensure `terraform/terraform.tfvars` is configured before running Terraform. Terraform will provision several resources:
+
+- An S3 bucket for hosting the website.
+- CloudFront distribution for fast and secure content delivery.
+- IAM roles and policies for GitHub Actions to interact with AWS securely.
+- ACM SSL certificate for HTTPS support, validated via Cloudflare DNS.
+- Cloudflare DNS records to point to CloudFront for both `www` and `@` domains.
 
 Initialize Terraform:
 
@@ -90,11 +96,7 @@ terraform plan
 terraform apply
 ```
 
-This will provision:
-
-- An S3 bucket.
-- A Cloudfront distribution (with S3 as origin).
-- A Cloudflare DNS record pointing to CloudFront.
+This will provision the resources listed above, ensuring a smooth and secure deployment pipeline with full infrastructure as code.
 
 ### 2️⃣ Deploying Website
 
