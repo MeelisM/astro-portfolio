@@ -131,10 +131,10 @@ github_repository_name = ""                 # Your GitHub repository name
 
 GitHub Actions Secrets:
 
-    - AWS_ACCOUNT_ID
-    - AWS_REGION
-    - CLOUDFRONT_DISTRIBUTION_ID
-    - S3_BUCKET_NAME
+    - AWS_ACCOUNT_ID                        # Your AWS Account ID
+    - AWS_REGION                            # AWS Region of your bucket
+    - CLOUDFRONT_DISTRIBUTION_ID            # CloudFront Distribution ID
+    - S3_BUCKET_NAME                        # S3 bucket name
 
 ## 📜 License
 
