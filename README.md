@@ -29,10 +29,10 @@ This repository contains the source code for my Astro + Tailwind CSS portfolio w
 
 Ensure you have the following installed:
 
-    - Node.js
-    - Terraform
-    - AWS CLI
-    - Cloudflare API token
+    - Node.js (for Astro development)
+    - Terraform (for infrastructure)
+    - AWS CLI (configured with appropriate IAM persmissions)
+    - Cloudflare API token (for DNS management)
 
 ### Local Development
 
@@ -54,6 +54,15 @@ Start the development server:
 ```
 npm run dev
 ```
+
+### Development Commands
+
+| Command           | Description                                              |
+| ----------------- | -------------------------------------------------------- |
+| `npm run dev`     | Starts the local development server at `localhost:4321`. |
+| `npm run build`   | Builds the project for production (`dist/` folder).      |
+| `npm run preview` | Serves the built project locally for testing.            |
+| `npm run lint`    | Runs ESLint to check for code issues.                    |
 
 ## Deployment
 
