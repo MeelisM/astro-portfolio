@@ -41,11 +41,6 @@ variable "aws_region_main" {
     type = string
 }
 
-variable "github_actions_username" {
-  description = "IAM username for GitHub Actions"
-  type = string
-}
-
 variable "website_bucket_name" {
   description = "The name of the S3 bucket for the website"
   type = string
