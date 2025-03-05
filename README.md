@@ -11,7 +11,7 @@ This repository contains the source code for my Astro + Tailwind CSS portfolio w
     - ⚡ CI/CD using GitHub Actions for automated deployment.
     - 🎨 Accessible & responsive design with interactive elements.
 
-## Project Structure
+## 📂 Project Structure
 
 ```
 📦 astro-portfolio
