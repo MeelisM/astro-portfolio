@@ -13,14 +13,15 @@ This repository contains the source code for my Astro + Tailwind CSS portfolio w
 
 ## Project Structure
 
-📦 astro-portfolio  
-├── 📁 src                  # Astro components & pages  
-├── 📁 public               # Static assets (e.g., favicon, robots.txt)  
-├── 📁 terraform            # Terraform scripts & variables for AWS & Cloudflare  
-├── 📁 .github/workflows    # CI/CD GitHub Actions workflows  
-├── 📄 package.json         # Astro project dependencies   
-└── 📄 README.md            # This documentation  
-
+```
+📦 astro-portfolio
+├── 📁 src                  # Astro components & pages
+├── 📁 public               # Static assets (e.g., favicon, fonts)
+├── 📁 terraform            # Terraform scripts & variables for AWS & Cloudflare
+├── 📁 .github/workflows    # CI/CD GitHub Actions workflows
+├── 📄 package.json         # Astro project dependencies
+└── 📄 README.md            # This documentation
+```
 
 ## Getting Started
 
@@ -58,7 +59,7 @@ npm run dev
 
 ### Infrastrucure Setup (Terraform)
 
-Note: Ensure AWS credentials & Cloudflare API Token are configured before running Terraform.
+Note: Ensure `terraform/terraform.fvars` is configured before running Terraform.
 
 Initialize Terraform:
 
@@ -81,9 +82,11 @@ This will provision:
 - A Cloudflare DNS record pointing to CloudFront.
 
 ### Deploying Website
+
 This project uses GitHub Actions for deployment. Pushing changes to the `main` branch will trigger the deployment workflow.
 
 - Commit and push changes
+
 ```
 git add .
 git commit -m "Update portfolio"
@@ -98,6 +101,7 @@ The GitHub Actions CI/CD workflow will:
 - Invalidate the Cloudfront cache.
 
 ## Configuration
+
 Terraform Variables (stored in `terraform/terraform.tfvars`, not commited. You can find the variable examples in `terraform/terraform.tfvars.example`.)
 
 ```text
@@ -115,4 +119,5 @@ github_repository_name = ""                 # Your GitHub repository name
 ```
 
 ## License
+
 This project is licensed under the [MIT License](/LICENSE).
