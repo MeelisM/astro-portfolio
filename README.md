@@ -70,40 +70,9 @@ Your site will be available at [http://localhost:4321](http://localhost:4321)
 
 ## 🌍 Deployment
 
-### 1️⃣ Deploying to GitHub Pages or Cloudflare Pages
+You can also deploy the site directly to **GitHub Pages** or **CloudFlare Pages** without needing to set up AWS, Terraform, or GitHub Actions.
 
-You can deploy the site directly to **GitHub Pages** or **CloudFlare Pages** without needing to set up AWS or Terraform.
-
-#### GitHub Pages
-
-Ensure the project is ready to be deployed by running the build command:
-
-```bash
-npm run build
-```
-
-Push the `dist`folder to your repository's `gh-pages`branch (if not already set up).
-
-```bash
-git subtree push --prefix dist origin gh-pages
-```
-
-Your site should now be available at `https://<your-username>.github.io/<your-repository-name>`
-
-#### Cloudflare Pages
-
-- Go to Cloudflare Pages and create a new project.
-- Connect your GitHub repository.
-- For **Build Command**, use:
-
-```bash
-npm run build
-```
-
-- Set the Built Output Directory to `dist`.
-- Click `Deploy` to publish your site!
-
-### 2️⃣ Infrastructure Setup (Terraform)
+### 1️⃣ Infrastructure Setup (Terraform)
 
 Note: Ensure `terraform/terraform.tfvars` is configured before running Terraform.
 
