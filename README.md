@@ -56,7 +56,7 @@ Start the development server:
 ```
 npm run dev
 ```
-
+Your site will be available at [http://localhost:4321](http://localhost:4321)
 ### 🛠 Development Commands
 
 | Command           | Description                                              |
@@ -70,7 +70,7 @@ npm run dev
 
 ### 1️⃣ Infrastrucure Setup (Terraform)
 
-Note: Ensure `terraform/terraform.fvars` is configured before running Terraform.
+Note: Ensure `terraform/terraform.tfvars` is configured before running Terraform.
 
 Initialize Terraform:
 
@@ -128,6 +128,13 @@ website_bucket_name = ""                    # S3 bucket name
 github_username = ""                        # Your GitHub username
 github_repository_name = ""                 # Your GitHub repository name
 ```
+
+GitHub Actions Secrets:
+
+    - AWS_ACCOUNT_ID
+    - AWS_REGION
+    - CLOUDFRONT_DISTRIBUTION_ID
+    - S3_BUCKET_NAME
 
 ## 📜 License
 
