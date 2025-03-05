@@ -40,6 +40,4 @@ body {
       transform: rotate(3deg);
     }
   }
-
-  --animate-blink: blink 0.8s infinite;
 }
