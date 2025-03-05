@@ -1,29 +1,29 @@
-# Asto Portfolio Website
+# 🚀 Asto Portfolio Website
 
 This repository contains the source code for my Astro + Tailwind CSS portfolio website. It is deployed as a static site on AWS using S3, Cloudfront, and Cloudflare for DNS management. Infrastructure provisioning is handled with Terraform and CI/CD is powered by GitHub Actions.
 
-## Features
+## 📌 Features
 
-    - Astro + Tailwind CSS for a modern, performant static site.
-    - AWS S3 & CloudFront for secure, fast global content delivery.
-    - Cloudflare DNS for domain management.
-    - Terraform to provision AWS infrastructure.
-    - CI/CD using GitHub Actions for automated deployment.
-    - Accessible & responsive design with interactive elements.
+    - 🚀 Astro + Tailwind CSS for a modern, performant static site.
+    - 🔒 AWS S3 & CloudFront for secure, fast global content delivery.
+    - 🌍 Cloudflare DNS for domain management.
+    - 📦 Terraform to provision AWS infrastructure.
+    - ⚡ CI/CD using GitHub Actions for automated deployment.
+    - 🎨 Accessible & responsive design with interactive elements.
 
 ## Project Structure
 
 ```
 📦 astro-portfolio
+├── 📁 .github/workflows    # CI/CD GitHub Actions workflows
 ├── 📁 src                  # Astro components & pages
 ├── 📁 public               # Static assets (e.g., favicon, fonts)
 ├── 📁 terraform            # Terraform scripts & variables for AWS & Cloudflare
-├── 📁 .github/workflows    # CI/CD GitHub Actions workflows
 ├── 📄 package.json         # Astro project dependencies
 └── 📄 README.md            # This documentation
 ```
 
-## Getting Started
+## 🚀 Getting Started
 
 ### Prerequisites
 
@@ -55,7 +55,7 @@ Start the development server:
 npm run dev
 ```
 
-### Development Commands
+### 🛠 Development Commands
 
 | Command           | Description                                              |
 | ----------------- | -------------------------------------------------------- |
@@ -64,7 +64,7 @@ npm run dev
 | `npm run preview` | Serves the built project locally for testing.            |
 | `npm run lint`    | Runs ESLint to check for code issues.                    |
 
-## Deployment
+## 🌍 Deployment
 
 ### Infrastrucure Setup (Terraform)
 
@@ -127,6 +127,6 @@ github_username = ""                        # Your GitHub username
 github_repository_name = ""                 # Your GitHub repository name
 ```
 
-## License
+## 📜 License
 
 This project is licensed under the [MIT License](/LICENSE).
