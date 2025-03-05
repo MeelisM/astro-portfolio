@@ -90,15 +90,15 @@ terraform apply
 
 This will provision:
 
-- An S3 bucket
-- A Cloudfront distribution (with S3 as origin)
+- An S3 bucket.
+- A Cloudfront distribution (with S3 as origin).
 - A Cloudflare DNS record pointing to CloudFront.
 
 ### 2️⃣ Deploying Website
 
 This project uses GitHub Actions for deployment. Pushing changes to the `main` branch will trigger the deployment workflow.
 
-- Commit and push changes
+Commit and push changes:
 
 ```bash
 git add .
