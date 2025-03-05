@@ -17,7 +17,7 @@ This repository contains the source code for my Astro + Tailwind CSS portfolio w
 📦 astro-portfolio
 ├── 📁 .github/workflows    # CI/CD GitHub Actions workflows
 ├── 📁 src                  # Astro components & pages
-├── 📁 public               # Static assets (e.g., favicon, fonts)
+├── 📁 public               # Static assets (e.g. favicon, fonts)
 ├── 📁 terraform            # Terraform scripts & variables for AWS & Cloudflare
 ├── 📄 package.json         # Astro project dependencies
 └── 📄 README.md            # This documentation
@@ -25,7 +25,7 @@ This repository contains the source code for my Astro + Tailwind CSS portfolio w
 
 ## 🚀 Getting Started
 
-### Prerequisites
+### 1️⃣ Prerequisites
 
 Ensure you have the following installed:
 
@@ -34,7 +34,7 @@ Ensure you have the following installed:
     - AWS CLI (configured with appropriate IAM persmissions)
     - Cloudflare API token (for DNS management)
 
-### Local Development
+### 2️⃣ Local Development
 
 Clone the repository:
 
@@ -66,7 +66,7 @@ npm run dev
 
 ## 🌍 Deployment
 
-### Infrastrucure Setup (Terraform)
+### 1️⃣ Infrastrucure Setup (Terraform)
 
 Note: Ensure `terraform/terraform.fvars` is configured before running Terraform.
 
@@ -90,7 +90,7 @@ This will provision:
 - A Cloudfront distribution (with S3 as origin)
 - A Cloudflare DNS record pointing to CloudFront.
 
-### Deploying Website
+### 2️⃣ Deploying Website
 
 This project uses GitHub Actions for deployment. Pushing changes to the `main` branch will trigger the deployment workflow.
 
@@ -109,7 +109,7 @@ The GitHub Actions CI/CD workflow will:
 - Sync files to S3.
 - Invalidate the Cloudfront cache.
 
-## Configuration
+## 🛠️ Configuration
 
 Terraform Variables (stored in `terraform/terraform.tfvars`, not commited. You can find the variable examples in `terraform/terraform.tfvars.example`.)
 
