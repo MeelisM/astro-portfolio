@@ -2,6 +2,8 @@
 
 This repository contains the source code for my Astro + Tailwind CSS portfolio website. It is deployed as a static site on AWS using S3, Cloudfront, and Cloudflare for DNS management. Infrastructure provisioning is handled with Terraform and CI/CD is powered by GitHub Actions.
 
+![Website Preview](/.github/assets/website.png)
+
 ## 📌 Features
 
     - 🚀 Astro + Tailwind CSS for a modern, performant static site.
