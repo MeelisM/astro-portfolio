@@ -31,10 +31,10 @@ This repository contains the source code for my Astro + Tailwind CSS portfolio w
 
 Ensure you have the following installed:
 
-- Node.js (for Astro development)
-- Terraform (for infrastructure)
-- AWS CLI (configured with appropriate IAM permissions)
-- Cloudflare API token (for DNS management)
+- Node.js (for Astro development).
+- Terraform (for infrastructure).
+- AWS CLI (configured with appropriate IAM permissions).
+- Cloudflare API token (for DNS management).
 
 ### 2️⃣ Local Development
 
