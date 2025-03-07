@@ -12,10 +12,17 @@ import Hero from "../components/Hero.astro";
     <meta charset="UTF-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <meta
-      content="Explore my personal portfolio built with Astro and Tailwind CSS, featuring automated AWS S3 infrastructure provisioning 
-        using Terraform (IaC) and streamlined CI/CD via GitHub Actions."
+      content="Explore my personal portfolio built with Astro and Tailwind CSS, featuring automated AWS S3 infrastructure provisioning using Terraform (IaC) and streamlined CI/CD via GitHub Actions."
       name="description"
     />
+    <meta name="robots" content="index, follow" />
+    <meta property="og:title" content="meelis.dev - Portfolio" />
+    <meta
+      property="og:description"
+      content="Explore my personal portfolio built with Astro and Tailwind CSS"
+    />
+    {/* Add meta image */}
+    <meta property="og:url" content="https://meelis.dev" />
     <title>meelis.dev</title>
     <link href="/favicon.svg" rel="icon" type="image/svg+xml" />
     <link
@@ -25,9 +32,9 @@ import Hero from "../components/Hero.astro";
       rel="preload"
       type="font/woff2"
     />
+    <link rel="preload" href="/styles/global.css" as="style" />
   </head>
   <body class="min-h-screen flex flex-col text-primary bg-background">
-    {/* Skip Link */}
     <a
       class="sr-only focus:not-sr-only absolute top-4 left-4 bg-primary text-secondary-project px-4 py-2 rounded shadow-md text-center"
       href="#main-content"
@@ -35,14 +42,12 @@ import Hero from "../components/Hero.astro";
       Skip to main content
     </a>
 
-    {/* Header  */}
     <header class="border-b border-accent">
       <div class="max-w-4xl mx-auto px-4">
         <Navbar />
       </div>
     </header>
 
-    {/* Main Content Wrapper */}
     <main class="flex-1 max-w-4xl mx-auto px-4" id="main-content" role="main">
       <section aria-labelledby="hero-heading" class="py-5" id="Hero">
         <h2 class="sr-only" id="hero-title">Hero Section</h2>
@@ -58,7 +63,6 @@ import Hero from "../components/Hero.astro";
       </section>
     </main>
 
-    {/* Footer Wrapper */}
     <footer class="border-t border-accent">
       <div class="max-w-4xl mx-auto">
         <Footer />
