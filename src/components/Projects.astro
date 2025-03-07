@@ -1,7 +1,7 @@
 ---
 import projectsData from "../content/projects.json";
 import SkillIcons from "./SkillIcons.astro";
-import GitHubIcon from "../assets/github-mark.svg"
+import GitHubIcon from "../assets/github-mark.svg";
 
 interface Project {
   name: string;
@@ -17,60 +17,61 @@ interface ProjectsData {
 
 const { projects }: ProjectsData = projectsData;
 ---
+
 <section>
   <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-    {projects.map((project: Project) => (
-<div 
-  aria-labelledby={`project-title-${project.name}`}
-  class="project-card group/project bg-tertiary-project text-secondary-project p-4 rounded-lg transition-all duration-300 relative focus-within:ring-2 focus-within:ring-primary-logo focus-within:outline-none hover:shadow-xl hover:scale-102 focus-within:shadow-xl focus-within:scale-102 flex flex-col h-full"
-  role="button"
-  tabindex="0"
->
-  <!-- Project Title & Link -->
-  <div class="flex justify-between items-center mb-2">
-    <h3  class="text-xl font-semibold id={`project-title-${project.name}`}">{project.name}</h3>
-    <div class="relative group/icon">
-      <a 
-        aria-label={`View ${project.name} on GitHub`}
-        class="transform transition duration-300 hover:-translate-y-1 focus:ring-2 focus:ring-primary-logo focus:outline-none"
-        href={project.link}
-        rel="noopener noreferrer"
-        target="_blank"
-      >
-        <GitHubIcon
-          aria-hidden="true"
-          class="w-6 h-6 transform transition duration-200 group-hover/icon:-translate-y-1 group-hover/icon:scale-125 group-focus-within/icon:-translate-y-1 group-focus-within/icon:scale-125"
-          stroke="currentColor"
-        />
-        <span 
-          class="absolute opacity-0 group-hover/icon:opacity-100 group-hover/icon:animate-wiggle group-focus-within/icon:animate-wiggle group-focus-within/icon:opacity-100 -bottom-0 right-8 bg-primary-tooltip text-primary-light text-xs px-2 py-1 rounded transition-opacity duration-200 whitespace-nowrap pointer-events-none"
-          role="tooltip"
+    {
+      projects.map((project: Project) => (
+        <div
+          aria-labelledby={`project-title-${project.name}`}
+          class="project-card group bg-tertiary-project text-secondary-project p-4 rounded-lg transition-all duration-300 relative focus-within:ring-2 focus-within:ring-primary-logo focus-within:outline-none hover:shadow-xl hover:scale-102 focus-within:shadow-xl focus-within:scale-102 flex flex-col h-full"
         >
-          View on GitHub
-        </span>
-      </a>
-    </div>
-  </div>
-
-  <!-- Project Description -->
-  <p class="text-sm text-primary-project mb-2">
-    {project.description}
-  </p>
-
-  <!-- Key Features -->
-  {project.features && project.features.length > 0 && (
-    <ul class="text-sm text-primary-project list-disc pl-5 mb-2">
-      {project.features.map((feature: string) => (
-        <li>{feature}</li>
-      ))}
-    </ul>
-  )}
-
-  <!-- Tech Used -->
-  <div class="mt-auto">
-  <SkillIcons bgColor="bg-primary-badge-project" bgHover="hover:bg-secondary-badge-project" filter={project.techUsed} textColor="text-secondary-badge-project" textHover="hover:text-primary-badge-project"/>
-  </div>
-</div>
-    ))}
+          {/* Project Title & Link */}
+          <div class="flex justify-between items-center mb-2">
+            <h3 class="text-xl font-semibold" id={`project-title-${project.name}`}>
+              {project.name}
+            </h3>
+            <div class="relative">
+              <a
+                aria-label={`View ${project.name} on GitHub`}
+                class="transform transition duration-300 focus:outline-none block relative"
+                href={project.link}
+                rel="noopener noreferrer"
+                target="_blank"
+              >
+                <GitHubIcon
+                  aria-hidden="true"
+                  class="w-6 h-6 transform transition duration-200 group-hover:-translate-y-1 group-hover:scale-125 group-focus-within:-translate-y-1 group-focus-within:scale-125"
+                  stroke="currentColor"
+                />
+                <span class="absolute opacity-0 group-hover:opacity-100 group-hover:animate-wiggle group-focus-within:animate-wiggle group-focus-within:opacity-100 -top-1 right-8 bg-primary-tooltip text-primary-light text-xs px-2 py-1 rounded transition-opacity duration-200 whitespace-nowrap">
+                  View on GitHub
+                </span>
+              </a>
+            </div>
+          </div>
+          {/* Project Description */}
+          <p class="text-sm text-primary-project mb-2">{project.description}</p>
+          {/* Key Features */}
+          {project.features && project.features.length > 0 && (
+            <ul class="text-sm text-primary-project list-disc pl-5 mb-2">
+              {project.features.map((feature: string) => (
+                <li>{feature}</li>
+              ))}
+            </ul>
+          )}
+          {/* Tech Used */}
+          <div class="mt-auto">
+            <SkillIcons
+              bgColor="bg-primary-badge-project"
+              bgHover="hover:bg-secondary-badge-project"
+              filter={project.techUsed}
+              textColor="text-secondary-badge-project"
+              textHover="hover:text-primary-badge-project"
+            />
+          </div>
+        </div>
+      ))
+    }
   </div>
 </section>

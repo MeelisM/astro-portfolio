@@ -20,12 +20,11 @@ export function TextGlitchAnimation() {
   let grid = [];
   let dynamicValue = "VISITOR"; // Will be API value
   const words = ["WELCOME", dynamicValue.toString()];
-  let wordPositions = [
-    { x: 0, y: 0 },
-    { x: 0, y: 0 },
-  ];
 
-  let phase = "appearing-welcome";
+  let wordPositions = words.map(() => ({ x: 0, y: 0 }));
+
+  let currentWordIndex = 0;
+  let phase = "appearing";
   let letterIndex = 0;
   let animationStartTime = Date.now();
   const letterSpeed = 300;
@@ -106,7 +105,7 @@ export function TextGlitchAnimation() {
     ctx.fillStyle = "#3c57a8";
 
     words.forEach((word, index) => {
-      let { x, y } = wordPositions[index];
+      const { x, y } = wordPositions[index];
       let lettersToShow = getLettersToShow(word, index);
 
       for (let i = 0; i < lettersToShow.length; i++) {
@@ -117,94 +116,115 @@ export function TextGlitchAnimation() {
 
   function getLettersToShow(word, index) {
     switch (phase) {
-      case "appearing-welcome":
-        return index === 0 ? word.slice(0, letterIndex) : "";
-      case "appearing-dynamic":
-        return index === 0 ? words[0] : word.slice(0, letterIndex);
+      case "appearing":
+        if (index < currentWordIndex) {
+          return word;
+        } else if (index === currentWordIndex) {
+          return word.slice(0, letterIndex);
+        } else {
+          return "";
+        }
+
       case "visible":
-        return word;
-      case "disappearing-welcome":
-        return index === 0 ? word.slice(0, letterIndex) : words[1];
-      case "disappearing-dynamic":
-        return index === 1 ? word.slice(0, letterIndex) : "";
+        return index <= currentWordIndex ? word : "";
+
+      case "disappearing":
+        if (index > currentWordIndex) {
+          return "";
+        } else if (index === currentWordIndex) {
+          return word.slice(0, letterIndex);
+        } else {
+          return word;
+        }
+
+      case "hidden":
+        return "";
+
       default:
         return "";
     }
   }
 
   function randomizeWordPositions() {
-    const position1 = {
-      x: Math.floor(Math.random() * (columns - words[0].length)),
-      y: Math.floor(Math.random() * rows),
-    };
+    let usedPositions = [];
 
-    let position2;
-    do {
-      position2 = {
-        x: Math.floor(Math.random() * (columns - words[1].length)),
-        y: Math.floor(Math.random() * rows),
-      };
-    } while (
-      position2.y === position1.y &&
-      position2.x < position1.x + words[0].length &&
-      position1.x < position2.x + words[1].length
-    );
+    wordPositions = words.map((word) => {
+      let position;
+      let attempts = 0;
+      const maxAttempts = 50;
 
-    wordPositions = [position1, position2];
+      do {
+        position = {
+          x: Math.floor(Math.random() * (columns - word.length)),
+          y: Math.floor(Math.random() * rows),
+        };
+
+        attempts++;
+
+        const overlaps = usedPositions.some(
+          (usedPos) =>
+            position.y === usedPos.y &&
+            position.x < usedPos.x + words[usedPositions.indexOf(usedPos)].length &&
+            usedPos.x < position.x + word.length
+        );
+
+        if (!overlaps || attempts >= maxAttempts) break;
+      } while (true);
+
+      usedPositions.push(position);
+      return position;
+    });
   }
 
   function updateAnimation() {
     const elapsed = Date.now() - animationStartTime;
 
     switch (phase) {
-      case "appearing-welcome":
-        if (elapsed > letterSpeed && letterIndex < words[0].length) {
+      case "appearing":
+        if (elapsed > letterSpeed && letterIndex < words[currentWordIndex].length) {
           letterIndex++;
           animationStartTime = Date.now();
-        } else if (letterIndex >= words[0].length) {
-          phase = "appearing-dynamic";
-          letterIndex = 0;
-          animationStartTime = Date.now();
+        } else if (letterIndex >= words[currentWordIndex].length) {
+          if (currentWordIndex < words.length - 1) {
+            currentWordIndex++;
+            letterIndex = 0;
+            animationStartTime = Date.now();
+          } else {
+            phase = "visible";
+            animationStartTime = Date.now();
+          }
         }
         break;
-      case "appearing-dynamic":
-        if (elapsed > letterSpeed && letterIndex < words[1].length) {
-          letterIndex++;
-          animationStartTime = Date.now();
-        } else if (letterIndex >= words[1].length) {
-          phase = "visible";
-          animationStartTime = Date.now();
-        }
-        break;
+
       case "visible":
         if (elapsed > wordStayDuration) {
-          phase = "disappearing-welcome";
-          letterIndex = words[0].length;
+          phase = "disappearing";
+          currentWordIndex = words.length - 1;
+          letterIndex = words[currentWordIndex].length;
           animationStartTime = Date.now();
         }
         break;
-      case "disappearing-welcome":
+
+      case "disappearing":
         if (elapsed > letterSpeed && letterIndex > 0) {
           letterIndex--;
           animationStartTime = Date.now();
         } else if (letterIndex === 0) {
-          phase = "disappearing-dynamic";
-          letterIndex = words[1].length;
-          animationStartTime = Date.now();
+          if (currentWordIndex > 0) {
+            currentWordIndex--;
+            letterIndex = words[currentWordIndex].length;
+            animationStartTime = Date.now();
+          } else {
+            phase = "hidden";
+            animationStartTime = Date.now();
+          }
         }
         break;
-      case "disappearing-dynamic":
-        if (elapsed > letterSpeed && letterIndex > 0) {
-          letterIndex--;
-          animationStartTime = Date.now();
-        } else if (letterIndex === 0) {
-          phase = "hidden";
-          animationStartTime = Date.now();
-        }
-        break;
+
       case "hidden":
         if (elapsed > wordStayDuration) {
-          phase = "appearing-welcome";
+          phase = "appearing";
+          currentWordIndex = 0;
           letterIndex = 0;
           randomizeWordPositions();
           animationStartTime = Date.now();
