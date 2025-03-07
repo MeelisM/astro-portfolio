@@ -15,14 +15,14 @@ import Hero from "../components/Hero.astro";
       content="Explore my personal portfolio built with Astro and Tailwind CSS, featuring automated AWS S3 infrastructure provisioning using Terraform (IaC) and streamlined CI/CD via GitHub Actions."
       name="description"
     />
-    <meta name="robots" content="index, follow" />
-    <meta property="og:title" content="meelis.dev - Portfolio" />
+    <meta content="index, follow" name="robots" />
+    <meta content="meelis.dev - Portfolio" property="og:title" />
     <meta
-      property="og:description"
       content="Explore my personal portfolio built with Astro and Tailwind CSS"
+      property="og:description"
     />
     {/* Add meta image */}
-    <meta property="og:url" content="https://meelis.dev" />
+    <meta content="https://meelis.dev" property="og:url" />
     <title>meelis.dev</title>
     <link href="/favicon.svg" rel="icon" type="image/svg+xml" />
     <link
@@ -32,7 +32,7 @@ import Hero from "../components/Hero.astro";
       rel="preload"
       type="font/woff2"
     />
-    <link rel="preload" href="/styles/global.css" as="style" />
+    <link as="style" href="/styles/global.css" rel="preload" />
   </head>
   <body class="min-h-screen flex flex-col text-primary bg-background">
     <a
