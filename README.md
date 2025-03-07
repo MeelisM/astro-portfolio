@@ -119,7 +119,7 @@ The GitHub Actions CI/CD workflow will:
 
 ## 🛠️ Configuration
 
-Terraform Variables (stored in `terraform/terraform.tfvars`, not committed. You can find the variable examples in `terraform/terraform.tfvars.example`.)
+Terraform Variables (stored in `terraform/terraform.tfvars`, not committed. You can find the variable examples in `terraform/terraform.tfvars.example`).
 
 ### **Terraform Variables**
 
