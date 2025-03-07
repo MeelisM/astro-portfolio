@@ -53,18 +53,17 @@ const socialLinks = typedSocialLinksData.map((link) => ({
             <a
               href={href}
               {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
-              aria-label={name}
+              aria-label={name === "Email" ? "Send me an email" : `Visit my ${name} profile`}
               class="focus:outline-none focus:ring group-focus-within:scale-[1.25] focus:ring-2 focus:ring-dotted focus:ring-primary-logo"
             >
               <Icon
+                aria-label={`${name} icon`}
                 class="w-6 h-6 transform transition duration-300 group-hover:-translate-y-1 group-hover:scale-[1.25] group-focus-within:-translate-y-1"
+                role="img"
                 stroke="currentColor"
               />
             </a>
-            <span
-              aria-hidden="true"
-              class="absolute opacity-0 group-hover:opacity-100 group-focus-within:opacity-100 -bottom-8 left-1/2 transform -translate-x-1/2 bg-primary-tooltip text-secondary-tooltip text-xs px-2 py-1 rounded transition-opacity duration-200 whitespace-nowrap pointer-events-none"
-            >
+            <span class="absolute opacity-0 group-hover:opacity-100 group-focus-within:opacity-100 -bottom-8 left-1/2 transform -translate-x-1/2 bg-primary-tooltip text-secondary-tooltip text-xs px-2 py-1 rounded transition-opacity duration-200 whitespace-nowrap pointer-events-none">
               {name}
             </span>
           </li>
