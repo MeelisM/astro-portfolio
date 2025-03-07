@@ -5,6 +5,7 @@ import Footer from "../components/Footer.astro";
 import SkillIcons from "../components/SkillIcons.astro";
 import Projects from "../components/Projects.astro";
 import Hero from "../components/Hero.astro";
+import stylesUrl from "../styles/global.css?url";
 ---
 
 <html lang="en">
@@ -25,6 +26,7 @@ import Hero from "../components/Hero.astro";
     <meta content="https://meelis.dev" property="og:url" />
     <title>meelis.dev</title>
     <link href="/favicon.svg" rel="icon" type="image/svg+xml" />
+    <link as="style" href=`${stylesUrl}` rel="preload" />
     <link
       as="font"
       crossorigin="anonymous"
