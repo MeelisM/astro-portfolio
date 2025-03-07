@@ -250,5 +250,3 @@ export function TextGlitchAnimation() {
 
   return cleanup;
 }
-
-TextGlitchAnimation();
