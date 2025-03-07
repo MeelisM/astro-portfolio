@@ -27,7 +27,7 @@ import Hero from "../components/Hero.astro";
     />
   </head>
   <body class="min-h-screen flex flex-col text-primary bg-background">
-    <!-- Skip Link -->
+    {/* Skip Link */}
     <a
       class="sr-only focus:not-sr-only absolute top-4 left-4 bg-primary text-secondary-project px-4 py-2 rounded shadow-md text-center"
       href="#main-content"
@@ -35,14 +35,14 @@ import Hero from "../components/Hero.astro";
       Skip to main content
     </a>
 
-    <!-- Header with border -->
+    {/* Header  */}
     <header class="border-b border-accent">
       <div class="max-w-4xl mx-auto px-4">
         <Navbar />
       </div>
     </header>
 
-    <!-- Main Content Wrapper -->
+    {/* Main Content Wrapper */}
     <main class="flex-1 max-w-4xl mx-auto px-4" id="main-content" role="main">
       <section aria-labelledby="hero-heading" class="py-5" id="Hero">
         <h2 class="sr-only" id="hero-title">Hero Section</h2>
@@ -58,7 +58,7 @@ import Hero from "../components/Hero.astro";
       </section>
     </main>
 
-    <!-- Footer Wrapper -->
+    {/* Footer Wrapper */}
     <footer class="border-t border-accent">
       <div class="max-w-4xl mx-auto">
         <Footer />
