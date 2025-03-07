@@ -40,7 +40,7 @@ const filteredSkills =
   {
     filteredSkills.map((skill) => (
       <li
-        class:list={`inline-flex items-center px-2 py-1 rounded-[12px] text-primary ${bgColor} ${textColor} ${bgHover} ${textHover}`}
+        class:list={`inline-flex items-center px-2 py-1 rounded-[12px] fill-current text-primary ${bgColor} ${textColor} ${bgHover} ${textHover}`}
       >
         <span aria-hidden="true" class="mr-1 w-4 h-4" set:html={skill.icon} />
         <span aria-label={`${skill.name}`} class="text-sm">
@@ -50,9 +50,3 @@ const filteredSkills =
     ))
   }
 </ul>
-
-<style>
-  span :global(svg) {
-    fill: currentColor;
-  }
-</style>
