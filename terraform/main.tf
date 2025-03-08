@@ -90,26 +90,42 @@ resource "aws_s3_bucket_public_access_block" "website_bucket_public_access_block
   restrict_public_buckets = true
 }
 
+# ---------------------
+# CloudFront Origin Access Control
+# ---------------------
+resource "aws_cloudfront_origin_access_control" "website_oac" {
+  name                              = "${var.subdomain_name}-oac"
+  description                       = "OAC for ${var.subdomain_name} S3 bucket"
+  origin_access_control_origin_type = "s3"
+  signing_behavior                  = "always"
+  signing_protocol                  = "sigv4"
+}
+
+# ---------------------
+# S3 Bucket Policy for CloudFront OAC
+# ---------------------
 resource "aws_s3_bucket_policy" "cloudfront_access_policy" {
   bucket = aws_s3_bucket.website_bucket.id
   policy = jsonencode({
     Version = "2012-10-17",
     Statement = [
       {
-        Sid    = "AllowCloudFrontAccess",
+        Sid    = "AllowCloudFrontServicePrincipalReadOnly",
         Effect = "Allow",
         Principal = {
-          AWS = aws_cloudfront_origin_access_identity.website_oai.iam_arn
+          Service = "cloudfront.amazonaws.com"
         },
         Action   = "s3:GetObject",
-        Resource = "${aws_s3_bucket.website_bucket.arn}/*"
-      },
+        Resource = "${aws_s3_bucket.website_bucket.arn}/*",
+        Condition = {
+          StringEquals = {
+            "AWS:SourceArn" = "arn:aws:cloudfront::${data.aws_caller_identity.current.account_id}:distribution/${aws_cloudfront_distribution.website_distribution.id}"
+          }
+        }
+      }
     ]
   })
-}
-
-resource "aws_cloudfront_origin_access_identity" "website_oai" {
-  comment = "Access identity for S3 bucket"
+  depends_on = [aws_cloudfront_distribution.website_distribution]
 }
 
 # ---------------------
@@ -162,9 +178,9 @@ resource "aws_cloudfront_distribution" "website_distribution" {
   origin {
     domain_name = aws_s3_bucket.website_bucket.bucket_regional_domain_name
     origin_id   = "S3-${var.subdomain_name}"
-    s3_origin_config {
-      origin_access_identity = aws_cloudfront_origin_access_identity.website_oai.cloudfront_access_identity_path
-    }
+    
+    # Replace s3_origin_config with origin_access_control_id
+    origin_access_control_id = aws_cloudfront_origin_access_control.website_oac.id
   }
 
   enabled             = true
