@@ -176,10 +176,8 @@ resource "aws_cloudfront_distribution" "website_distribution" {
   depends_on = [aws_acm_certificate_validation.cert]
 
   origin {
-    domain_name = aws_s3_bucket.website_bucket.bucket_regional_domain_name
-    origin_id   = "S3-${var.subdomain_name}"
-
-    # Replace s3_origin_config with origin_access_control_id
+    domain_name              = aws_s3_bucket.website_bucket.bucket_regional_domain_name
+    origin_id                = "S3-${var.subdomain_name}"
     origin_access_control_id = aws_cloudfront_origin_access_control.website_oac.id
   }
 
