@@ -2,7 +2,7 @@
 
 This repository contains the source code for my Astro + Tailwind CSS portfolio website. It is deployed as a static site on AWS using S3, CloudFront, and Cloudflare for DNS management. Infrastructure provisioning is handled with Terraform and CI/CD is powered by GitHub Actions.
 
-You can also deploy the site directly to **GitHub Pages** or **CloudFlare Pages** without setting up AWS, Terraform, or GitHub Actions.
+You can also deploy the site directly to **GitHub Pages** or **CloudFlare Pages** without setting up AWS, Terraform or GitHub Actions.
 
 ![Website Preview](/.github/assets/website.png)
 
@@ -100,7 +100,7 @@ This will provision the resources listed above, ensuring a smooth and secure dep
 
 ### Deploying Website
 
-This project uses GitHub Actions for deployment. Pushing changes to the `main` branch will trigger the deployment workflow.
+This project uses GitHub Actions for deployment. Deployment workflow will trigger if any changes are found in `src/`, `public/`, `package.json`, `package-lock.json` or `astro.config.*`.
 
 Commit and push changes:
 

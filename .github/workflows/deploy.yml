@@ -9,7 +9,7 @@ on:
       - "public/**"
       - "package.json"
       - "package-lock.json"
-      - ".astro.config.*"
+      - "astro.config.*"
   workflow_dispatch:
 
 jobs:
