@@ -14,12 +14,12 @@ async function fetchVisitorCount() {
   }
 }
 
-export function TextGlitchAnimation() {
+export async function TextGlitchAnimation() {
   if (typeof window === "undefined" || typeof document === "undefined") return;
 
   ("use strict");
 
-  const visitorCount = fetchVisitorCount();
+  const visitorCount = await fetchVisitorCount();
 
   const canvas = document.getElementById("textGlitchCanvas");
   if (!canvas) {
