@@ -173,13 +173,29 @@ resource "aws_cloudfront_response_headers_policy" "csp_policy" {
 }
 
 resource "aws_cloudfront_distribution" "website_distribution" {
-  depends_on = [aws_acm_certificate_validation.cert]
+   depends_on = [
+    aws_acm_certificate_validation.cert,
+    aws_s3_bucket.website_bucket
+  ]
 
   origin {
     domain_name              = aws_s3_bucket.website_bucket.bucket_regional_domain_name
-    origin_id                = "S3-${var.subdomain_name}"
+    origin_id                = var.subdomain_name
     origin_access_control_id = aws_cloudfront_origin_access_control.website_oac.id
   }
+
+origin {
+  domain_name = replace(aws_apigatewayv2_api.visitor_counter_api.api_endpoint, "https://", "")
+  origin_id   = "ApiGateway-${var.subdomain_name}"
+
+  custom_origin_config {
+    http_port              = 80
+    https_port             = 443
+    origin_protocol_policy = "https-only"
+    origin_ssl_protocols   = ["TLSv1.2"]
+  }
+}
+
 
   enabled             = true
   is_ipv6_enabled     = true
@@ -194,7 +210,7 @@ resource "aws_cloudfront_distribution" "website_distribution" {
   default_cache_behavior {
     allowed_methods  = ["GET", "HEAD"]
     cached_methods   = ["GET", "HEAD"]
-    target_origin_id = "S3-${var.subdomain_name}"
+    target_origin_id = var.subdomain_name
 
     forwarded_values {
       query_string = false
@@ -209,6 +225,32 @@ resource "aws_cloudfront_distribution" "website_distribution" {
     max_ttl                = 31536000
 
     response_headers_policy_id = aws_cloudfront_response_headers_policy.csp_policy.id
+
+    function_association {
+      event_type   = "viewer-request"
+      function_arn = aws_cloudfront_function.url_rewriter.arn
+    }
+  }
+
+  ordered_cache_behavior {
+    path_pattern     = "/api/*"
+    allowed_methods  = ["GET", "HEAD", "OPTIONS"]
+    cached_methods   = ["GET", "HEAD"]
+    target_origin_id = "ApiGateway-${var.subdomain_name}"
+
+    forwarded_values {
+      query_string = true
+      headers      = ["Origin", "Access-Control-Request-Method", "Access-Control-Request-Headers"]
+      cookies {
+        forward = "none"
+      }
+    }
+
+    min_ttl                = 0
+    default_ttl            = 0
+    max_ttl                = 0
+    compress               = true
+    viewer_protocol_policy = "redirect-to-https"
   }
 
   aliases = [
@@ -250,4 +292,176 @@ resource "cloudflare_record" "cloudfront_root" {
   content = aws_cloudfront_distribution.website_distribution.domain_name
   ttl     = 1
   proxied = true
+}
+
+# ---------------------
+# DynamoDB Table for Visitor Counter
+# ---------------------
+resource "aws_dynamodb_table" "visitor_counter" {
+  name         = "${var.subdomain_name}-visitor-counter"
+  billing_mode = "PAY_PER_REQUEST"
+  hash_key     = "id"
+
+  attribute {
+    name = "id"
+    type = "S"
+  }
+
+  tags = {
+    Name = "Visitor Counter Table"
+  }
+}
+
+resource "aws_dynamodb_table_item" "counter_seed" {
+  table_name = aws_dynamodb_table.visitor_counter.name
+  hash_key   = aws_dynamodb_table.visitor_counter.hash_key
+
+  item = <<ITEM
+{
+  "id": {"S": "visitors"},
+  "count": {"N": "0"}
+}
+ITEM
+
+  lifecycle {
+    ignore_changes = [item]
+  }
+}
+
+# ---------------------
+# Lambda Function for Visitor Counter
+# ---------------------
+resource "aws_lambda_function" "visitor_counter" {
+  function_name = "s3website-visitor-counter"
+  role          = aws_iam_role.lambda_execution_role.arn
+  handler       = "index.handler"
+  runtime       = "nodejs18.x"
+
+  filename         = "${path.module}/lambda_function.zip"
+  source_code_hash = filebase64sha256("${path.module}/lambda_function.zip")
+
+  environment {
+    variables = {
+      TABLE_NAME = aws_dynamodb_table.visitor_counter.name
+    }
+  }
+}
+
+# ---------------------
+# Lambda Execution Role
+# ---------------------
+resource "aws_iam_role" "lambda_execution_role" {
+  name = "s3website-lambda-execution-role"
+
+  assume_role_policy = jsonencode({
+    Version = "2012-10-17"
+    Statement = [
+      {
+        Effect = "Allow"
+        Principal = {
+          Service = "lambda.amazonaws.com"
+        }
+        Action = "sts:AssumeRole"
+      }
+    ]
+  })
+}
+
+# ---------------------
+# Lambda Permission for DynamoDB
+# ---------------------
+resource "aws_iam_policy" "lambda_dynamodb_policy" {
+  name        = "${var.subdomain_name}-lambda-dynamodb-policy"
+  description = "Allow Lambda to interact with DynamoDB for visitor counter"
+
+  policy = jsonencode({
+    Version = "2012-10-17"
+    Statement = [
+      {
+        Effect = "Allow"
+        Action = [
+          "dynamodb:GetItem",
+          "dynamodb:UpdateItem"
+        ]
+        Resource = aws_dynamodb_table.visitor_counter.arn
+      },
+      {
+        Effect = "Allow"
+        Action = [
+          "logs:CreateLogGroup",
+          "logs:CreateLogStream",
+          "logs:PutLogEvents"
+        ]
+        Resource = "arn:aws:logs:*:*:*"
+      }
+    ]
+  })
+}
+
+resource "aws_iam_role_policy_attachment" "lambda_dynamodb_policy_attachment" {
+  role       = aws_iam_role.lambda_execution_role.name
+  policy_arn = aws_iam_policy.lambda_dynamodb_policy.arn
+}
+
+# ---------------------
+# API Gateway
+# ---------------------
+resource "aws_apigatewayv2_api" "visitor_counter_api" {
+  name          = "${var.subdomain_name}-visitor-counter-api"
+  protocol_type = "HTTP"
+  cors_configuration {
+    allow_origins = ["https://${var.domain_name}", "https://${var.subdomain_name}"]
+    allow_methods = ["GET", "OPTIONS"]
+    allow_headers = ["Content-Type", "X-Amz-Date", "Authorization", "X-Api-Key", "X-Amz-Security-Token"]
+  }
+}
+
+resource "aws_apigatewayv2_stage" "visitor_counter_stage" {
+  api_id      = aws_apigatewayv2_api.visitor_counter_api.id
+  name        = "$default"
+  auto_deploy = true
+}
+
+resource "aws_apigatewayv2_integration" "visitor_counter_integration" {
+  api_id             = aws_apigatewayv2_api.visitor_counter_api.id
+  integration_type   = "AWS_PROXY"
+  integration_method = "POST"
+  integration_uri    = aws_lambda_function.visitor_counter.invoke_arn
+}
+
+resource "aws_apigatewayv2_route" "visitor_counter_route" {
+  api_id    = aws_apigatewayv2_api.visitor_counter_api.id
+  route_key = "GET /count"
+  target    = "integrations/${aws_apigatewayv2_integration.visitor_counter_integration.id}"
+}
+
+# ---------------------
+# Lambda Permission for API Gateway
+# ---------------------
+resource "aws_lambda_permission" "api_gateway_lambda" {
+  statement_id  = "AllowAPIGatewayInvoke"
+  action        = "lambda:InvokeFunction"
+  function_name = aws_lambda_function.visitor_counter.function_name
+  principal     = "apigateway.amazonaws.com"
+  source_arn    = "${aws_apigatewayv2_api.visitor_counter_api.execution_arn}/*/*/count"
+}
+
+# ---------------------
+# URL Rewrite Function for API Gateway
+# ---------------------
+resource "aws_cloudfront_function" "url_rewriter" {
+  name    = "s3website-url-rewriter"
+  runtime = "cloudfront-js-1.0"
+  code    = <<-EOT
+    function handler(event) {
+      var request = event.request;
+      var uri = request.uri;
+      
+      if (uri.startsWith('/api/count')) {
+        request.uri = uri.replace('/api', '');
+      }
+      
+      return request;
+    }
+  EOT
 }
