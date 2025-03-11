@@ -173,7 +173,7 @@ resource "aws_cloudfront_response_headers_policy" "csp_policy" {
 }
 
 resource "aws_cloudfront_distribution" "website_distribution" {
-   depends_on = [
+  depends_on = [
     aws_acm_certificate_validation.cert,
     aws_s3_bucket.website_bucket
   ]
@@ -184,18 +184,17 @@ resource "aws_cloudfront_distribution" "website_distribution" {
     origin_access_control_id = aws_cloudfront_origin_access_control.website_oac.id
   }
 
-origin {
-  domain_name = replace(aws_apigatewayv2_api.visitor_counter_api.api_endpoint, "https://", "")
-  origin_id   = "ApiGateway-${var.subdomain_name}"
+  origin {
+    domain_name = replace(aws_apigatewayv2_api.visitor_counter_api.api_endpoint, "https://", "")
+    origin_id   = "ApiGateway-${var.subdomain_name}"
 
-  custom_origin_config {
-    http_port              = 80
-    https_port             = 443
-    origin_protocol_policy = "https-only"
-    origin_ssl_protocols   = ["TLSv1.2"]
+    custom_origin_config {
+      http_port              = 80
+      https_port             = 443
+      origin_protocol_policy = "https-only"
+      origin_ssl_protocols   = ["TLSv1.2"]
+    }
   }
-}
-
 
   enabled             = true
   is_ipv6_enabled     = true
@@ -225,11 +224,6 @@ origin {
     max_ttl                = 31536000
 
     response_headers_policy_id = aws_cloudfront_response_headers_policy.csp_policy.id
-
-    function_association {
-      event_type   = "viewer-request"
-      function_arn = aws_cloudfront_function.url_rewriter.arn
-    }
   }
 
   ordered_cache_behavior {
@@ -246,11 +240,16 @@ origin {
       }
     }
 
-    min_ttl                = 0
-    default_ttl            = 0
-    max_ttl                = 0
+    min_ttl                = 300
+    default_ttl            = 300
+    max_ttl                = 600
     compress               = true
     viewer_protocol_policy = "redirect-to-https"
+
+    function_association {
+      event_type   = "viewer-request"
+      function_arn = aws_cloudfront_function.url_rewriter.arn
+    }
   }
 
   aliases = [
@@ -293,6 +292,7 @@ resource "cloudflare_record" "cloudfront_root" {
   ttl     = 1
   proxied = true
 }
+
 
 # ---------------------
 # DynamoDB Table for Visitor Counter
@@ -410,9 +410,10 @@ resource "aws_apigatewayv2_api" "visitor_counter_api" {
   name          = "${var.subdomain_name}-visitor-counter-api"
   protocol_type = "HTTP"
   cors_configuration {
-    allow_origins = ["https://${var.domain_name}", "https://${var.subdomain_name}"]
-    allow_methods = ["GET", "OPTIONS"]
-    allow_headers = ["Content-Type", "X-Amz-Date", "Authorization", "X-Api-Key", "X-Amz-Security-Token"]
+    allow_origins  = ["https://${var.domain_name}", "https://${var.subdomain_name}"]
+    allow_methods  = ["GET", "OPTIONS"]
+    allow_headers  = ["Content-Type", "Cache-Control"]
+    expose_headers = ["Cache-Control"]
   }
 }
 
@@ -420,6 +421,11 @@ resource "aws_apigatewayv2_stage" "visitor_counter_stage" {
   api_id      = aws_apigatewayv2_api.visitor_counter_api.id
   name        = "$default"
   auto_deploy = true
+
+  default_route_settings {
+    throttling_rate_limit  = 1
+    throttling_burst_limit = 1
+  }
 }
 
 resource "aws_apigatewayv2_integration" "visitor_counter_integration" {
@@ -454,14 +460,14 @@ resource "aws_cloudfront_function" "url_rewriter" {
   runtime = "cloudfront-js-1.0"
   code    = <<-EOT
     function handler(event) {
-      var request = event.request;
-      var uri = request.uri;
-      
-      if (uri.startsWith('/api/count')) {
-        request.uri = uri.replace('/api', '');
-      }
-      
-      return request;
-    }
+  var request = event.request;
+  var uri = request.uri;
+
+  if (uri.startsWith('/api')) {
+    request.uri = uri.replace(/^\/api/, '');
+  }
+
+  return request;
+}
   EOT
 }
