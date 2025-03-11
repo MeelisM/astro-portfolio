@@ -1,7 +1,25 @@
+async function fetchVisitorCount() {
+  try {
+    const response = await fetch("/api/visitor-count");
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+
+    const data = await response.json();
+    return data.visitors.toString();
+  } catch (error) {
+    console.error("Error fetching visitor count:", error);
+    return "ERROR";
+  }
+}
+
 export function TextGlitchAnimation() {
   if (typeof window === "undefined" || typeof document === "undefined") return;
 
   ("use strict");
+
+  const visitorCount = fetchVisitorCount();
 
   const canvas = document.getElementById("textGlitchCanvas");
   if (!canvas) {
@@ -18,8 +36,8 @@ export function TextGlitchAnimation() {
   const fontSize = 16;
   let columns, rows;
   let grid = [];
-  let dynamicValue = "VISITOR"; // Will be API value
-  const words = ["WELCOME", dynamicValue.toString()];
+  let dynamicValue = "#" + visitorCount;
+  const words = ["WELCOME", dynamicValue];
 
   let wordPositions = words.map(() => ({ x: 0, y: 0 }));
 
