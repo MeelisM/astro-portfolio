@@ -1,22 +1,23 @@
 async function fetchVisitorCount() {
-  const LAST_COUNT_KEY = "lastVisitorCount";
   try {
-    const response = await fetch("/api/count", { cache: "no-store" });
+    const lastCount = localStorage.getItem("visitorCount");
 
+    const response = await fetch("/api/count");
     if (!response.ok) {
       if (response.status === 429) {
-        console.warn("Rate limit exceeded. Using last known visitor count.");
-        return localStorage.getItem(LAST_COUNT_KEY) || "VISITOR";
+        console.warn("Too Many Requests!");
+        return lastCount || "VISITOR";
       }
       throw new Error(`HTTP error! status: ${response.status}`);
     }
 
     const data = await response.json();
-    localStorage.setItem(LAST_COUNT_KEY, data.visitors.toString());
+    localStorage.setItem("visitorCount", data.visitors);
+
     return data.visitors.toString();
   } catch (error) {
-    console.error("Error fetching visitor count:", error);
-    return localStorage.getItem(LAST_COUNT_KEY) || "ERROR";
+    console.error("Error fetching visitor count");
+    return localStorage.getItem("visitorCount") || "VISITOR";
   }
 }
 
