@@ -1,30 +1,54 @@
 {
   "projects": [
     {
-      "name": "Portfolio",
-      "description": "A fast portfolio website built with Astro and Tailwind CSS. Infrastructure automation is achieved using Terraform, which provisions AWS S3, configures CloudFront for content delivery, integrates Cloudflare DNS and sets up OIDC authentication for GitHub Actions CI/CD. ",
-      "techUsed": ["Astro", "Tailwind CSS", "TypeScript", "Amazon S3", "Terraform"],
-      "features": ["Static site built with Astro and Tailwind CSS.", "Automated infrastructure provisioning using Terraform.", "Secure CloudFront distribution with Cloudflare DNS.", "Secure CI/CD pipeline with OIDC-authenticated GitHub Actions."],
+      "name": "Astro Portfolio",
+      "description": "A fast portfolio website built with Astro and Tailwind CSS. Deployed on AWS with automated infrastructure and CI/CD.",
+      "techUsed": [
+        "Astro",
+        "TypeScript",
+        "Amazon Web Services",
+        "Terraform",
+        "Tailwind CSS",
+        "GitHub Actions"
+      ],
+      "features": [
+        "Hosted on AWS S3 with CloudFront for secure content delivery.",
+        "Automated infrastructure provisioning using Terraform.",
+        "Cloudflare-managed domain with HTTPS end-to-end encryption.",
+        "Serverless visitor tracking via API Gateway, Lambda & DynamoDB.",
+        "CI/CD pipeline with OIDC-authenticated GitHub Actions."
+      ],
       "link": "https://github.com/MeelisM/meelis.dev"
     },
     {
       "name": "VMicroServices",
-      "description": "A microservices-based project that runs in a virtualized environment using Vagrant and VirtualBox. It includes an API Gateway, Inventory Service, Billing Service and RabbitMQ for asynchronous messaging. Both development and production environments are fully automated using scripts.",
-      "techUsed": ["Node.js", "PostgreSQL", "Vagrant", "Postman", "VirtualBox", "PM2"],
-      "features": ["Virtualized infrastructure using Vagrant and VirtualBox.", "Comprehensive Postman collections for testing API endpoints.", "RabbitMQ for asynchronous message processing.", "Automated setup with database migrations."],
+      "description": "A virtualized microservices-based project with automated setup for development and production.",
+      "techUsed": ["Node.js", "PostgreSQL", "Vagrant", "Postman", "VirtualBox"],
+      "features": [
+        "API Gateway, Inventory, and Billing services running in isolated VMs.",
+        "RabbitMQ for asynchronous message processing.",
+        "Automated provisioning with database migrations and service orchestration.",
+        "Comprehensive API testing with Postman collections."
+      ],
       "link": "https://github.com/MeelisM/VMicroServices"
     },
     {
       "name": "Dockerized API",
-      "description": "A microservices-based project that demonstrates containerized application architecture using Docker and Docker Compose. It includes API Gateway, Inventory Service, Billing Service and RabbitMQ message queue.",
+      "description": "A containerized microservices-based project that leverages Docker and Docker Compose for orchestration.",
       "techUsed": ["Node.js", "PostgreSQL", "Docker", "Postman"],
-      "features": ["Microservices architecture with independent services.", "Comprehensive Postman collections for testing.", "API Gateway for centralized routing.", "Fully containerized with Docker Compose."],
+      "features": [
+        "Microservices architecture with API Gateway, Inventory, and Billing services.",
+        "RabbitMQ for asynchronous messaging between services.",
+        "Database services with persistent PostgreSQL volumes.",
+        "Secure API Gateway for centralized routing and access control.",
+        "Fully containerized setup with automated service orchestration."
+      ],
       "link": "https://github.com/MeelisM/dockerized-api"
     },
     {
       "name": "Social Network",
       "description": "A full-stack Facebook-like social network with a REST API backend built in Go and a React frontend. Supports user profiles, posts, followers, groups, events, notifications, and real-time chat with WebSockets.",
-      "techUsed": ["Go", "Node.js", "Docker", "SQLite", "React"],
+      "techUsed": ["Go", "Node.js", "Docker", "SQLite"],
       "features": [
         "Follow system with private and public profiles.",
         "Session-based auth using UUID tokens and HTTP-only cookies.",
