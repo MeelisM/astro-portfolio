@@ -1,11 +1,13 @@
 let lastApiCall = 0;
-const apiThrottleTime = 5000;
+const apiThrottleTime = 5000; // 5 seconds throttle
 
 async function fetchVisitorCount() {
   const now = Date.now();
+  const lastCount = localStorage.getItem("visitorCount") || "VISITOR";
+
   if (now - lastApiCall < apiThrottleTime) {
     console.warn("Throttled API request! Using cached value.");
-    return localStorage.getItem("visitorCount") || "VISITOR";
+    return lastCount;
   }
   lastApiCall = now;
 
@@ -15,23 +17,23 @@ async function fetchVisitorCount() {
     if (!response.ok) {
       if (response.status === 429) {
         console.warn("Too Many Requests! Using last known count.");
-        return localStorage.getItem("visitorCount") || "VISITOR";
+        return lastCount;
       }
-      throw new Error(`HTTP error! status: ${response.status}`);
+      throw new Error("HTTP error!");
     }
 
     const data = await response.json();
 
     if (typeof data.visitors !== "number") {
       console.warn("Invalid visitor count received, using last known count.");
-      return localStorage.getItem("visitorCount") || "VISITOR";
+      return lastCount;
     }
 
     localStorage.setItem("visitorCount", data.visitors.toString());
     return data.visitors.toString();
   } catch (error) {
-    console.error("Error fetching visitor count:", error);
-    return localStorage.getItem("visitorCount") || "VISITOR";
+    console.error("Error fetching visitor count");
+    return lastCount;
   }
 }
 
