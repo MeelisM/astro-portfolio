@@ -1,12 +1,19 @@
 async function fetchVisitorCount() {
   try {
-    const response = await fetch("/api/count");
+    const lastVisit = localStorage.getItem("lastVisit");
+    const now = Date.now();
+    const oneDay = 24 * 60 * 60 * 1000;
 
-    if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
-    }
+    const response = await fetch("/api/count");
+    if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
 
     const data = await response.json();
+
+    if (!lastVisit || now - Number(lastVisit) > oneDay) {
+      localStorage.setItem("lastVisit", now.toString());
+      await fetch("/api/count?increment=true");
+    }
+
     return data.visitors.toString();
   } catch (error) {
     console.error("Error fetching visitor count:", error);
