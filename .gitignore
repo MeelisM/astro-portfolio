@@ -39,5 +39,7 @@ pnpm-debug.log*
 # Ignore Terraform tfvars
 terraform.tfvars
 terraform.tfvars.json
+terraform/index.js
 
 .aws_credentials
+

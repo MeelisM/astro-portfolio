@@ -55,3 +55,8 @@ variable "github_repository_name" {
   description = "Your GitHub repository name"
   type        = string
 }
+
+variable "budget_notification_email" {
+  description = "The email address to send budget alerts to"
+  type        = string
+}

@@ -240,9 +240,9 @@ resource "aws_cloudfront_distribution" "website_distribution" {
       }
     }
 
-    min_ttl                = 300
-    default_ttl            = 300
-    max_ttl                = 600
+    min_ttl                = 0
+    default_ttl            = 0
+    max_ttl                = 0
     compress               = true
     viewer_protocol_policy = "redirect-to-https"
 
@@ -392,7 +392,7 @@ resource "aws_iam_policy" "lambda_dynamodb_policy" {
           "logs:CreateLogStream",
           "logs:PutLogEvents"
         ]
-        Resource = "arn:aws:logs:*:*:*"
+        "Resource" : "arn:aws:logs:${var.aws_region_main}:${data.aws_caller_identity.current.account_id}:log-group:/aws/lambda/${aws_lambda_function.visitor_counter.function_name}:*"
       }
     ]
   })
@@ -423,8 +423,8 @@ resource "aws_apigatewayv2_stage" "visitor_counter_stage" {
   auto_deploy = true
 
   default_route_settings {
-    throttling_rate_limit  = 1
-    throttling_burst_limit = 1
+    throttling_rate_limit  = 2
+    throttling_burst_limit = 5
   }
 }
 
@@ -470,4 +470,44 @@ resource "aws_cloudfront_function" "url_rewriter" {
   return request;
 }
   EOT
+}
+
+# ---------------------
+# CloudWatch Alarm for Visitor Counter
+# ---------------------
+resource "aws_cloudwatch_metric_alarm" "api_count_alarm" {
+  alarm_name          = "visitor-counter-api-high-usage"
+  comparison_operator = "GreaterThanThreshold"
+  evaluation_periods  = 1
+  metric_name         = "Count"
+  namespace           = "AWS/ApiGateway"
+  period              = "3600"
+  statistic           = "Sum"
+  threshold           = "1000"
+  alarm_description   = "Alarm when visitor counter API exceeds 1000 requests per hour"
+  dimensions          = { ApiId = aws_apigatewayv2_api.visitor_counter_api.id }
+}
+
+# ---------------------
+# AWS Budget
+# ---------------------
+resource "aws_budgets_budget" "api_count_budget" {
+  name         = "api-gateway-budget"
+  budget_type  = "COST"
+  limit_amount = "10"
+  limit_unit   = "USD"
+  time_unit    = "MONTHLY"
+
+  cost_filter {
+    name   = "Service"
+    values = ["Amazon API Gateway"]
+  }
+
+  notification {
+    comparison_operator        = "GREATER_THAN"
+    threshold                  = 80
+    threshold_type             = "PERCENTAGE"
+    notification_type          = "ACTUAL"
+    subscriber_email_addresses = [var.budget_notification_email]
+  }
 }
