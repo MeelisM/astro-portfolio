@@ -1,18 +1,35 @@
 async function fetchVisitorCount() {
   const defaultResponse = "VISITOR";
-
   try {
-    const response = await fetch("/api/count");
+    const lastFetch = localStorage.getItem("lastCounterFetch");
+    const now = Date.now();
+    const cachedCount = localStorage.getItem("visitorCount");
+
+    if (lastFetch && now - parseInt(lastFetch) < 3600000) {
+      if (cachedCount) {
+        return cachedCount;
+      }
+    }
+
+    const response = await fetch("/api/count", {
+      headers: {
+        "Cache-Control": "no-cache",
+      },
+    });
 
     if (!response.ok) {
       throw new Error("HTTP error!");
     }
 
     const data = await response.json();
+
+    localStorage.setItem("lastCounterFetch", now.toString());
+    localStorage.setItem("visitorCount", data.visitors.toString());
+
     return data.visitors.toString();
   } catch (error) {
-    console.error("Error fetching visitor count");
-    return defaultResponse;
+    console.error("Error fetching visitor count:", error);
+    return cachedCount || defaultResponse;
   }
 }
 
