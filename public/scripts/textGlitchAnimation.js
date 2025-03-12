@@ -1,22 +1,28 @@
 async function fetchVisitorCount() {
   try {
-    const lastCount = localStorage.getItem("visitorCount");
+    const lastCount = localStorage.getItem("visitorCount") || "VISITOR";
 
     const response = await fetch("/api/count");
+
     if (!response.ok) {
       if (response.status === 429) {
-        console.warn("Too Many Requests!");
-        return lastCount || "VISITOR";
+        console.warn("Too Many Requests! Using last known count.");
+        return lastCount;
       }
       throw new Error(`HTTP error! status: ${response.status}`);
     }
 
     const data = await response.json();
-    localStorage.setItem("visitorCount", data.visitors);
 
+    if (typeof data.visitors !== "number") {
+      console.warn("Invalid visitor count received, using last known count.");
+      return lastCount;
+    }
+
+    localStorage.setItem("visitorCount", data.visitors.toString());
     return data.visitors.toString();
   } catch (error) {
-    console.error("Error fetching visitor count");
+    console.error("Error fetching visitor count:", error);
     return localStorage.getItem("visitorCount") || "VISITOR";
   }
 }
