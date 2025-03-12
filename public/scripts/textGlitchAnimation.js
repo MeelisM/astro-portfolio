@@ -23,8 +23,10 @@ async function fetchVisitorCount() {
 
     const data = await response.json();
 
-    localStorage.setItem("lastCounterFetch", now.toString());
     localStorage.setItem("visitorCount", data.visitors.toString());
+    if (data.counted) {
+      localStorage.setItem("lastCounterFetch", now.toString());
+    }
 
     return data.visitors.toString();
   } catch (error) {

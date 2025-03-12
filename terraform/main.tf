@@ -307,6 +307,11 @@ resource "aws_dynamodb_table" "visitor_counter" {
     type = "S"
   }
 
+  ttl {
+    attribute_name = "ttl"
+    enabled        = true
+  }
+
   tags = {
     Name = "Visitor Counter Table"
   }
