@@ -1,23 +1,22 @@
 async function fetchVisitorCount() {
+  const LAST_COUNT_KEY = "lastVisitorCount";
   try {
-    const lastVisit = localStorage.getItem("lastVisit");
-    const now = Date.now();
-    const oneDay = 24 * 60 * 60 * 1000;
+    const response = await fetch("/api/count", { cache: "no-store" });
 
-    const response = await fetch("/api/count");
-    if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
-
-    const data = await response.json();
-
-    if (!lastVisit || now - Number(lastVisit) > oneDay) {
-      localStorage.setItem("lastVisit", now.toString());
-      await fetch("/api/count?increment=true");
+    if (!response.ok) {
+      if (response.status === 429) {
+        console.warn("Rate limit exceeded. Using last known visitor count.");
+        return localStorage.getItem(LAST_COUNT_KEY) || "VISITOR";
+      }
+      throw new Error(`HTTP error! status: ${response.status}`);
     }
 
+    const data = await response.json();
+    localStorage.setItem(LAST_COUNT_KEY, data.visitors.toString());
     return data.visitors.toString();
   } catch (error) {
     console.error("Error fetching visitor count:", error);
-    return "ERROR";
+    return localStorage.getItem(LAST_COUNT_KEY) || "ERROR";
   }
 }
 
