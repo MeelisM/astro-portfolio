@@ -137,6 +137,7 @@ Terraform Variables (stored in `terraform/terraform.tfvars`, not committed. You 
 | `github_username`           | Your GitHub username                  |
 | `github_repository_name`    | Your GitHub repository name           |
 | `budget_notification_email` | API Gateway budget notification email |
+| `api_secret_header`         | Random secret header for API Gateway  |
 
 ---
 

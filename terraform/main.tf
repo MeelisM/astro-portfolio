@@ -194,6 +194,11 @@ resource "aws_cloudfront_distribution" "website_distribution" {
       origin_protocol_policy = "https-only"
       origin_ssl_protocols   = ["TLSv1.2"]
     }
+
+    custom_header {
+      name  = "x-api-secret"
+      value = var.api_secret_header
+    }
   }
 
   enabled             = true
@@ -204,6 +209,18 @@ resource "aws_cloudfront_distribution" "website_distribution" {
     geo_restriction {
       restriction_type = "none"
     }
+  }
+
+  custom_error_response {
+    error_code         = 404
+    response_code      = 404
+    response_page_path = "/404.html"
+  }
+
+  custom_error_response {
+    error_code         = 403
+    response_code      = 403
+    response_page_path = "/403.html"
   }
 
   default_cache_behavior {
@@ -342,7 +359,8 @@ resource "aws_lambda_function" "visitor_counter" {
 
   environment {
     variables = {
-      TABLE_NAME = aws_dynamodb_table.visitor_counter.name
+      TABLE_NAME        = aws_dynamodb_table.visitor_counter.name
+      API_SECRET_HEADER = var.api_secret_header
     }
   }
 }

@@ -65,3 +65,8 @@ variable "dynamodb_table_name" {
   description = "The name of the DynamoDB table for visitor count"
   type        = string
 }
+
+variable "api_secret_header" {
+  description = "The secret header for the API Gateway"
+  type        = string
+}
