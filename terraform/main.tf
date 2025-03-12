@@ -423,8 +423,8 @@ resource "aws_apigatewayv2_stage" "visitor_counter_stage" {
   auto_deploy = true
 
   default_route_settings {
-    throttling_rate_limit  = 1
-    throttling_burst_limit = 2
+    throttling_rate_limit  = 2
+    throttling_burst_limit = 4
   }
 }
 
