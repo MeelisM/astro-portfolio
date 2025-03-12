@@ -14,7 +14,7 @@ body {
 .status {
     font-size: 2.25rem;
     font-weight: 600;
-    color: #4f46e5;
+    color: #1c398e;
     margin: 0;
 }
 h1 {
@@ -29,11 +29,12 @@ h1 {
     line-height: 1.5;
 }
 .home-link {
-    color: #4f46e5;
+    color: #1c398e;
     text-decoration: none;
     font-size: 0.875rem;
     font-weight: 600;
 }
 .home-link:hover {
-    color: #4338ca;
+    color: #10235c;
+    text-decoration: underline;
 }
