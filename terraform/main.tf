@@ -240,9 +240,9 @@ resource "aws_cloudfront_distribution" "website_distribution" {
       }
     }
 
-    min_ttl                = 0
-    default_ttl            = 0
-    max_ttl                = 0
+    min_ttl                = 60
+    default_ttl            = 60
+    max_ttl                = 60
     compress               = true
     viewer_protocol_policy = "redirect-to-https"
 
@@ -305,11 +305,6 @@ resource "aws_dynamodb_table" "visitor_counter" {
   attribute {
     name = "id"
     type = "S"
-  }
-
-  ttl {
-    attribute_name = "ttl"
-    enabled        = true
   }
 
   tags = {
