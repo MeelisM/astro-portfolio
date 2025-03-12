@@ -60,3 +60,8 @@ variable "budget_notification_email" {
   description = "The email address to send budget alerts to"
   type        = string
 }
+
+variable "dynamodb_table_name" {
+  description = "The name of the DynamoDB table for visitor count"
+  type        = string
+}

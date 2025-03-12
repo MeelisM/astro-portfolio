@@ -298,7 +298,7 @@ resource "cloudflare_record" "cloudfront_root" {
 # DynamoDB Table for Visitor Counter
 # ---------------------
 resource "aws_dynamodb_table" "visitor_counter" {
-  name         = "visitor_count"
+  name         = var.dynamodb_table_name
   billing_mode = "PAY_PER_REQUEST"
   hash_key     = "id"
 
