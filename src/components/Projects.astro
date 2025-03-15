@@ -2,6 +2,7 @@
 import projectsData from "../content/projects.json";
 import SkillIcons from "./SkillIcons.astro";
 import GitHubIcon from "../assets/github-mark.svg";
+
 interface Project {
   name: string;
   description: string;
@@ -9,9 +10,11 @@ interface Project {
   features: string[];
   link: string;
 }
+
 interface ProjectsData {
   projects: Project[];
 }
+
 const { projects }: ProjectsData = projectsData;
 ---
 
@@ -21,7 +24,7 @@ const { projects }: ProjectsData = projectsData;
       projects.map((project: Project) => (
         <div
           aria-labelledby={`project-title-${project.name}`}
-          class="project-card group bg-tertiary-project text-secondary-project p-4 rounded-lg transition-all duration-300 relative focus-within:ring-2 focus-within:ring-primary-logo focus-within:outline-none hover:shadow-xl hover:scale-102 focus-within:shadow-xl focus-within:scale-102 active:shadow-xl active:scale-102 flex flex-col h-full"
+          class="project-card group bg-tertiary-project text-secondary-project p-4 rounded-lg transition-all duration-300 relative focus-within:ring-2 focus-within:ring-primary-logo focus-within:outline-none hover:shadow-xl hover:scale-102 focus-within:shadow-xl focus-within:scale-102 flex flex-col h-full"
         >
           {/* Project Title & Link */}
           <div class="flex justify-between items-center mb-2">
@@ -38,11 +41,11 @@ const { projects }: ProjectsData = projectsData;
               >
                 <GitHubIcon
                   aria-hidden="true"
-                  class="w-6 h-6 transform transition duration-200 group-hover:-translate-y-1 group-hover:scale-102 group-focus-within:-translate-y-1 group-focus-within:scale-102 group-active:-translate-y-1 group-active:scale-102"
+                  class="w-6 h-6 transform transition duration-200 group-hover:-translate-y-1 group-hover:scale-125 group-focus-within:-translate-y-1 group-focus-within:scale-125"
                   role="img"
                   stroke="currentColor"
                 />
-                <span class="absolute opacity-0 group-hover:opacity-100 group-hover:animate-wiggle group-focus-within:animate-wiggle group-focus-within:opacity-100 group-active:opacity-100 group-active:animate-wiggle -top-1 right-8 bg-primary-tooltip text-primary-light text-xs px-2 py-1 rounded transition-opacity duration-200 whitespace-nowrap">
+                <span class="absolute opacity-0 group-hover:opacity-100 group-hover:animate-wiggle group-focus-within:animate-wiggle group-focus-within:opacity-100 -top-1 right-8 bg-primary-tooltip text-primary-light text-xs px-2 py-1 rounded transition-opacity duration-200 whitespace-nowrap">
                   View on GitHub
                 </span>
               </a>
