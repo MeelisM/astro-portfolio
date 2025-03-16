@@ -24,8 +24,8 @@ const { projects }: ProjectsData = projectsData;
       projects.map((project: Project) => (
         <div
           aria-labelledby={`project-title-${project.name}`}
-          tabindex="0"
           class="project-card group bg-tertiary-project text-secondary-project p-4 rounded-lg transition-all duration-300 relative focus-within:ring-2 focus-within:ring-primary-logo focus-within:outline-none hover:shadow-xl hover:scale-102 focus-within:shadow-xl focus-within:scale-102 flex flex-col h-full"
+          tabindex="0"
         >
           {/* Project Title & Link */}
           <div class="flex justify-between items-center mb-2">
@@ -46,10 +46,7 @@ const { projects }: ProjectsData = projectsData;
                   role="img"
                   stroke="currentColor"
                 />
-                <span
-                  onclick=""
-                  class="absolute opacity-0 group-hover:opacity-100 group-hover:animate-wiggle group-focus-within:animate-wiggle group-focus-within:opacity-100 -top-1 right-8 bg-primary-tooltip text-primary-light text-xs px-2 py-1 rounded transition-opacity duration-200 whitespace-nowrap"
-                >
+                <span class="absolute opacity-0 group-hover:opacity-100 group-hover:animate-wiggle group-focus-within:animate-wiggle group-focus-within:opacity-100 -top-1 right-8 bg-primary-tooltip text-primary-light text-xs px-2 py-1 rounded transition-opacity duration-200 whitespace-nowrap">
                   View on GitHub
                 </span>
               </a>
