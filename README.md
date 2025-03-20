@@ -123,21 +123,21 @@ Terraform Variables (stored in `terraform/terraform.tfvars`, not committed. You 
 
 ### **Terraform Variables**
 
-| Variable Name               | Description                           |
-| --------------------------- | ------------------------------------- |
-| `aws_access_key`            | Your AWS Access Key                   |
-| `aws_secret_key`            | Your AWS Secret Key                   |
-| `cloudflare_secret_token`   | Cloudflare Secret Token               |
-| `cloudflare_zone_id`        | Cloudflare Zone ID of your domain     |
-| `aws_account_id`            | AWS Account ID                        |
-| `domain_name`               | Your Cloudflare root domain (`@`)     |
-| `subdomain_name`            | Your Cloudflare subdomain (`www`)     |
-| `aws_region_main`           | AWS Region of your bucket             |
-| `website_bucket_name`       | S3 bucket name                        |
-| `github_username`           | Your GitHub username                  |
-| `github_repository_name`    | Your GitHub repository name           |
-| `budget_notification_email` | API Gateway budget notification email |
-| `api_secret_header`         | Random secret header for API Gateway  |
+| Variable Name               | Description                               |
+| --------------------------- | ----------------------------------------- |
+| `aws_access_key`            | Your AWS Access Key                       |
+| `aws_secret_key`            | Your AWS Secret Key                       |
+| `cloudflare_secret_token`   | Cloudflare Secret Token                   |
+| `cloudflare_zone_id`        | Cloudflare Zone ID of your domain         |
+| `aws_account_id`            | AWS Account ID                            |
+| `domain_name`               | Your Cloudflare root domain (`@`)         |
+| `subdomain_name`            | Your Cloudflare subdomain (`www`)         |
+| `aws_region_main`           | AWS Region of your bucket                 |
+| `website_bucket_name`       | S3 bucket name                            |
+| `github_username`           | Your GitHub username                      |
+| `github_repository_name`    | Your GitHub repository name               |
+| `budget_notification_email` | Email for API Gateway budget notification |
+| `api_secret_header`         | Random secret header for API Gateway      |
 
 ---
 
