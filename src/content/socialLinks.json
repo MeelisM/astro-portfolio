@@ -1,7 +1,7 @@
 [
     {
       "name": "Email Me",
-      "href": "mailto:email@meelis.dev",
+      "href": "mailto:contact@meelis.dev",
       "iconName": "EmailIcon",
       "external": false
     },
