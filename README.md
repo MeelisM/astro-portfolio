@@ -2,18 +2,17 @@
 
 This repository contains the source code for my Astro + Tailwind CSS portfolio website. It is deployed as a static site on AWS using S3, CloudFront, and Cloudflare for DNS management. Infrastructure provisioning is handled with Terraform and CI/CD is powered by GitHub Actions.
 
-You can also deploy the site directly to **GitHub Pages** or **CloudFlare Pages** without setting up AWS, Terraform or GitHub Actions.
-
 ![Website Preview](/.github/assets/website.png)
 
 ## 📌 Features
 
-- 🚀 **Astro + Tailwind CSS** for a modern, performant static site.
-- 🔒 **AWS S3 & CloudFront** for secure, fast global content delivery.
-- 🌍 **Cloudflare DNS** for domain management.
-- 📦 **Terraform** to provision AWS infrastructure.
-- ⚡ **CI/CD** using GitHub Actions for automated deployment.
-- 🎨 **Accessible & responsive** design with interactive elements.
+- **Astro + Tailwind CSS** for a modern, performant static site.
+- **AWS S3 & CloudFront** for secure, fast global content delivery.
+- **AWS Lambda & Amazon DynamoDB** to track the number of visitors.
+- **Cloudflare DNS** for domain management.
+- **Terraform** to provision AWS infrastructure.
+- **CI/CD** using GitHub Actions for automated deployment.
+- **Accessible & responsive** design with interactive elements.
 
 ## 📂 Project Structure
 
@@ -81,6 +80,7 @@ Note: Ensure `terraform/terraform.tfvars` is configured before running Terraform
 - IAM roles and policies for GitHub Actions to interact with AWS securely.
 - ACM SSL certificate for HTTPS support, validated via Cloudflare DNS.
 - Cloudflare DNS records to point to CloudFront for both `www` and `@` domains.
+- AWS Lambda & Amazon DynamoDB to track the number of visitors.
 
 Initialize Terraform:
 
