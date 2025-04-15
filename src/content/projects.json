@@ -3,13 +3,13 @@
     {
       "name": "K3s-cluster",
       "description": "A microservices application deployed on a K3s Kubernetes cluster, featuring API Gateway, Inventory, and Billing services integrated with RabbitMQ and PostgreSQL.",
-      "techUsed": ["Kubernetes", "Docker", "Vagrant", "Bash"],
+      "techUsed": ["Kubernetes", "Docker", "Vagrant", "Bash", "VirtualBox"],
       "features": [
-        "Deployed a Kubernetes cluster using lightweight K3s across virtualized nodes via Vagrant and VirtualBox.",
-        "Automated infrastructure provisioning, service deployment, and manifest application using a single Bash orchestrator script.",
-        "Implemented auto-scaling for API Gateway and Inventory services based on CPU usage thresholds.",
-        "Utilized StatefulSets to ensure persistent identity and stable storage for PostgreSQL databases and the Billing service.",
-        "Integrated RabbitMQ to enable asynchronous communication between microservices."
+        "Auto-scaling microservices with gateway and service components.",
+        "Persistent storage for PostgreSQL databases and RabbitMQ.",
+        "Cluster lifecycle management scripts.",
+        "Fault-tolerant message processing system.",
+        "API documentation with Postman collections for all endpoints."
       ],
       "link": "https://github.com/MeelisM/K3s-cluster"
     },
