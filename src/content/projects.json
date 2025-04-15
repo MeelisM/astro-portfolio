@@ -3,7 +3,15 @@
     {
       "name": "K3s-cluster",
       "description": "A microservices application deployed on a K3s Kubernetes cluster, featuring API Gateway, Inventory, and Billing services integrated with RabbitMQ and PostgreSQL.",
-      "techUsed": ["Kubernetes", "Docker", "Vagrant", "Bash", "VirtualBox"],
+      "techUsed": [
+        "Kubernetes",
+        "Docker",
+        "Vagrant",
+        "Bash",
+        "VirtualBox",
+        "PostgreSQL",
+        "Node.js"
+      ],
       "features": [
         "Auto-scaling microservices with gateway and service components.",
         "Persistent storage for PostgreSQL databases and RabbitMQ.",
@@ -21,8 +29,7 @@
         "TypeScript",
         "Amazon Web Services",
         "Terraform",
-        "Tailwind CSS",
-        "GitHub Actions"
+        "Tailwind CSS"
       ],
       "features": [
         "Hosted on AWS S3 with CloudFront for secure content delivery.",
