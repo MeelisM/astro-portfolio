@@ -1,9 +1,9 @@
 ---
-import GitHubIcon from "../assets/github-mark.svg";
-import EmailIcon from "../assets/email.svg";
-import LinkedInIcon from "../assets/linkedin.svg";
-import FavIcon from "../assets/favicon.svg";
-import socialLinksData from "../content/socialLinks.json";
+import GitHubIcon from "@assets/github-mark.svg";
+import EmailIcon from "@assets/email.svg";
+import LinkedInIcon from "@assets/linkedin.svg";
+import FavIcon from "@assets/favicon.svg";
+import socialLinksData from "@content/socialLinks.json";
 
 const title: string = "meelis.dev";
 
@@ -52,8 +52,14 @@ const socialLinks = typedSocialLinksData.map((link) => ({
           <li class="relative group text-primary-nav hover:animate-wiggle focus-within:animate-wiggle">
             <a
               href={href}
-              {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
-              aria-label={name === "Email" ? "Send me an email" : `Visit my ${name} profile`}
+              {...(external
+                ? { target: "_blank", rel: "noopener noreferrer" }
+                : {})}
+              aria-label={
+                name === "Email"
+                  ? "Send me an email"
+                  : `Visit my ${name} profile`
+              }
               class="focus:outline-none focus:ring group-focus-within:scale-[1.25] focus:ring-2 focus:ring-dotted focus:ring-primary-logo"
             >
               <Icon

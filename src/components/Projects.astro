@@ -1,7 +1,7 @@
 ---
-import projectsData from "../content/projects.json";
-import SkillIcons from "./SkillIcons.astro";
-import GitHubIcon from "../assets/github-mark.svg";
+import projectsData from "@content/projects.json";
+import SkillIcons from "@components/SkillIcons.astro";
+import GitHubIcon from "@assets/github-mark.svg";
 
 interface Project {
   name: string;
@@ -15,7 +15,7 @@ interface ProjectsData {
   projects: Project[];
 }
 
-const { projects }: ProjectsData = projectsData;
+const { projects } = projectsData as ProjectsData;
 ---
 
 <section>
@@ -29,7 +29,10 @@ const { projects }: ProjectsData = projectsData;
         >
           {/* Project Title & Link */}
           <div class="flex justify-between items-center mb-2">
-            <h3 class="text-xl font-semibold" id={`project-title-${project.name}`}>
+            <h3
+              class="text-xl font-semibold"
+              id={`project-title-${project.name}`}
+            >
               {project.name}
             </h3>
             <div class="relative">

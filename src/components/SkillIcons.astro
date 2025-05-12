@@ -1,5 +1,5 @@
 ---
-import skillsData from "../content/skills.json";
+import skillsData from "@content/skills.json";
 
 interface Skill {
   name: string;
@@ -19,7 +19,7 @@ interface Props {
   class?: string;
 }
 
-const { skills }: SkillsData = skillsData;
+const { skills } = skillsData as SkillsData;
 
 const {
   filter = [],
