@@ -12,6 +12,7 @@
         "PostgreSQL",
         "Node.js"
       ],
+      "imagePath": "project_1.png",
       "features": [
         "Auto-scaling microservices with gateway and service components.",
         "Persistent storage for PostgreSQL databases and RabbitMQ.",
@@ -31,6 +32,7 @@
         "Terraform",
         "Tailwind CSS"
       ],
+      "imagePath": "project_2.png",
       "features": [
         "Hosted on AWS S3 with CloudFront for secure content delivery.",
         "Automated infrastructure provisioning using Terraform.",
