@@ -41,23 +41,21 @@
       "link": "https://github.com/MeelisM/meelis.dev"
     },
     {
-      "name": "K3s-cluster",
-      "description": "A microservices application deployed on a K3s Kubernetes cluster, featuring API Gateway, Inventory, and Billing services integrated with RabbitMQ and PostgreSQL.",
+      "name": "AWS Cloud Design",
+      "description": "A cloud-native microservices architecture deployed on AWS EKS.",
       "techUsed": [
         "Kubernetes",
         "Docker",
-        "Vagrant",
-        "Bash",
-        "VirtualBox",
         "PostgreSQL",
-        "Node.js"
+        "Node.js",
+        "Amazon Web Services"
       ],
       "imagePath": "project_3.webp",
       "features": [
-        "Auto-scaling microservices with gateway and service components.",
-        "Persistent storage for PostgreSQL databases and RabbitMQ.",
-        "Cluster lifecycle management scripts.",
-        "Fault-tolerant message processing system.",
+        "Automated infrastructure provisioning using Terraform.",
+        "Implemented API Gateway, Inventory, and Billing services with Node.js, PostgreSQL, and RabbitMQ.",
+        "Configured Kubernetes resources with Horizontal Pod Autoscaling, StatefulSets and Persistent Volumes.",
+        "Integrated CloudWatch dashboard for monitoring and performance metrics.",
         "API documentation with Postman collections for all endpoints."
       ],
       "link": "https://github.com/MeelisM/K3s-cluster"
