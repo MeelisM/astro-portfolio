@@ -10,7 +10,7 @@
         "Ansible",
         "Amazon Web Services"
       ],
-      "imagePath": "project_1.png",
+      "imagePath": "project_1.webp",
       "features": [
         "Multi-AZ deployment with staging & production environments.",
         "Infrastructure managed through Terraform with S3/DynamoDB state backend.",
@@ -30,7 +30,7 @@
         "Terraform",
         "Tailwind CSS"
       ],
-      "imagePath": "project_2.png",
+      "imagePath": "project_2.webp",
       "features": [
         "Hosted on AWS S3 with CloudFront for secure content delivery.",
         "Automated infrastructure provisioning using Terraform.",
@@ -52,7 +52,7 @@
         "PostgreSQL",
         "Node.js"
       ],
-      "imagePath": "project_3.png",
+      "imagePath": "project_3.webp",
       "features": [
         "Auto-scaling microservices with gateway and service components.",
         "Persistent storage for PostgreSQL databases and RabbitMQ.",
@@ -67,7 +67,7 @@
       "name": "Social Network",
       "description": "Collaborated on developing a full-stack social network with a REST API backend built in Go and a React frontend. Supports user profiles, posts, followers, groups, events, notifications, and real-time chat.",
       "techUsed": ["Go", "Node.js", "Docker", "SQLite"],
-      "imagePath": "project_4.png",
+      "imagePath": "project_4.webp",
       "features": [
         "Follow system with private and public profiles and follower requests.",
         "Session-based auth using UUID tokens and HTTP-only cookies.",
