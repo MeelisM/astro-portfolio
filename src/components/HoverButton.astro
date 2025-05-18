@@ -1,0 +1,15 @@
+---
+interface Props {
+  text: string;
+  className?: string;
+}
+
+const { text, className = "" } = Astro.props;
+
+const baseClasses =
+  "bg-primary-tooltip text-primary-light text-xs px-2 py-1 rounded whitespace-nowrap transition-all duration-300";
+---
+
+<span class:list={[baseClasses, className]}>
+  {text}
+</span>

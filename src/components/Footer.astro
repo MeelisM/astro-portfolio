@@ -1,4 +1,5 @@
 ---
+import HoverButton from "@components/HoverButton.astro";
 const year: number = new Date().getFullYear();
 ---
 
@@ -8,13 +9,13 @@ const year: number = new Date().getFullYear();
       Meelis Mumm © {year} | MIT License |
       <a
         aria-label="Visit website's GitHub repository"
-        class="relative group transform transition duration-300 hover:-translate-y-1 hover:scale-[1.25] underline focus:border-2 focus:border-dotted focus:border-primary-logo focus:outline-none"
+        class="relative group transform transition duration-300 hover:-translate-y-1 hover:scale-[1.25] underline focus:outline-none focus-visible:outline-2 focus-visible:outline-dotted focus-visible:outline-primary-logo focus-visible:outline-offset-2"
         href="https://github.com/MeelisM/meelis.dev"
         >GitHub
         <span
-          class="absolute opacity-0 group-hover:opacity-100 group-focus:opacity-100 group-hover:animate-wiggle group-focus-within:animate-wiggle -top-7 left-1/2 transform -translate-x-1/2 bg-primary-tooltip text-secondary-tooltip text-xs px-2 py-1 rounded transition-opacity duration-200 whitespace-nowrap pointer-events-none"
+          class="absolute opacity-0 group-hover:opacity-100 group-focus:opacity-100 group-hover:animate-wiggle group-focus-within:animate-wiggle -top-7 left-1/2 transform -translate-x-1/2 pointer-events-none"
         >
-          Visit GitHub
+          <HoverButton text="Visit GitHub" />
         </span>
       </a>
     </p>

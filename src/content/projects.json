@@ -1,6 +1,46 @@
 {
   "projects": [
     {
+      "name": "AWS Code Keeper",
+      "description": "A cloud-native microservices architecture showcasing modern DevOps practices deployed on AWS EKS with GitLab CI/CD pipelines.",
+      "techUsed": [
+        "Docker",
+        "Kubernetes",
+        "Terraform",
+        "Ansible",
+        "Amazon Web Services"
+      ],
+      "imagePath": "project_1.png",
+      "features": [
+        "Multi-AZ deployment with staging & production environments.",
+        "Infrastructure managed through Terraform with S3/DynamoDB state backend.",
+        "Containerized Node.js services deployed as a demonstration microservices architecture.",
+        "Self-hosted GitLab with automated pipelines for CI/CD.",
+        "CloudWatch monitoring for all application components."
+      ],
+      "link": "https://github.com/MeelisM/aws-code-keeper"
+    },
+    {
+      "name": "Astro Portfolio",
+      "description": "A fast portfolio website built with Astro and Tailwind CSS. Deployed on AWS with automated infrastructure and CI/CD.",
+      "techUsed": [
+        "Astro",
+        "JavaScript",
+        "Amazon Web Services",
+        "Terraform",
+        "Tailwind CSS"
+      ],
+      "imagePath": "project_2.png",
+      "features": [
+        "Hosted on AWS S3 with CloudFront for secure content delivery.",
+        "Automated infrastructure provisioning using Terraform.",
+        "Cloudflare-managed domain with HTTPS end-to-end encryption.",
+        "Serverless visitor tracking via API Gateway, Lambda & DynamoDB.",
+        "CI/CD pipeline with OIDC-authenticated GitHub Actions."
+      ],
+      "link": "https://github.com/MeelisM/meelis.dev"
+    },
+    {
       "name": "K3s-cluster",
       "description": "A microservices application deployed on a K3s Kubernetes cluster, featuring API Gateway, Inventory, and Billing services integrated with RabbitMQ and PostgreSQL.",
       "techUsed": [
@@ -12,6 +52,7 @@
         "PostgreSQL",
         "Node.js"
       ],
+      "imagePath": "project_3.png",
       "features": [
         "Auto-scaling microservices with gateway and service components.",
         "Persistent storage for PostgreSQL databases and RabbitMQ.",
@@ -21,49 +62,20 @@
       ],
       "link": "https://github.com/MeelisM/K3s-cluster"
     },
+
     {
-      "name": "Astro Portfolio",
-      "description": "A fast portfolio website built with Astro and Tailwind CSS. Deployed on AWS with automated infrastructure and CI/CD.",
-      "techUsed": [
-        "Astro",
-        "TypeScript",
-        "Amazon Web Services",
-        "Terraform",
-        "Tailwind CSS"
-      ],
+      "name": "Social Network",
+      "description": "Collaborated on developing a full-stack social network with a REST API backend built in Go and a React frontend. Supports user profiles, posts, followers, groups, events, notifications, and real-time chat.",
+      "techUsed": ["Go", "Node.js", "Docker", "SQLite"],
+      "imagePath": "project_4.png",
       "features": [
-        "Hosted on AWS S3 with CloudFront for secure content delivery.",
-        "Automated infrastructure provisioning using Terraform.",
-        "Cloudflare-managed domain with HTTPS end-to-end encryption.",
-        "Serverless visitor tracking via API Gateway, Lambda & DynamoDB.",
-        "CI/CD pipeline with OIDC-authenticated GitHub Actions."
+        "Follow system with private and public profiles and follower requests.",
+        "Session-based auth using UUID tokens and HTTP-only cookies.",
+        "Post creation with privacy settings and media attachments.",
+        "Live notifications for follows, messages and group activities.",
+        "Group management with events and invitation system."
       ],
-      "link": "https://github.com/MeelisM/meelis.dev"
-    },
-    {
-      "name": "VMicroServices",
-      "description": "A virtualized microservices-based project with automated setup for development and production.",
-      "techUsed": ["Node.js", "PostgreSQL", "Vagrant", "Postman", "VirtualBox"],
-      "features": [
-        "API Gateway, Inventory, and Billing services running in isolated VMs.",
-        "RabbitMQ for asynchronous message processing.",
-        "Automated provisioning with database migrations and service orchestration.",
-        "Comprehensive API testing with Postman collections."
-      ],
-      "link": "https://github.com/MeelisM/VMicroServices"
-    },
-    {
-      "name": "Dockerized API",
-      "description": "A containerized microservices-based project that leverages Docker and Docker Compose for orchestration.",
-      "techUsed": ["Node.js", "PostgreSQL", "Docker", "Postman"],
-      "features": [
-        "Microservices architecture with API Gateway, Inventory, and Billing services.",
-        "RabbitMQ for asynchronous messaging between services.",
-        "Database services with persistent PostgreSQL volumes.",
-        "Secure API Gateway for centralized routing and access control.",
-        "Fully containerized setup with automated service orchestration."
-      ],
-      "link": "https://github.com/MeelisM/dockerized-api"
+      "link": "https://github.com/MeelisM/social-network"
     }
   ]
 }

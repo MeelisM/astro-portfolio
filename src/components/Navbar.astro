@@ -33,14 +33,20 @@ const socialLinks = typedSocialLinksData.map((link) => ({
 <nav aria-label="Main Navigation" class="w-full">
   <div class="max-w-4xl mx-auto flex justify-between items-center py-5">
     <div class="flex items-center space-x-2">
-      <FavIcon
-        aria-hidden="true"
-        class="w-6 h-6 transform transition duration-300 hover:-translate-y-1 hover:scale-[1.25] text-primary-logo"
-        fill="currentColor"
-      />
+      <a
+        href="/"
+        aria-label="Homepage"
+        class="focus:outline-none focus-visible:outline-2 focus-visible:outline-dotted focus-visible:outline-primary-logo focus-visible:outline-offset-2"
+      >
+        <FavIcon
+          aria-hidden="true"
+          class="w-6 h-6 transform transition duration-300 hover:-translate-y-1 hover:scale-[1.25] text-primary-logo"
+          fill="currentColor"
+        />
+      </a>
 
       <a
-        class="text-lg font-bold underline focus:outline-none focus:ring text-primary-nav"
+        class="text-lg font-bold underline focus:outline-none focus-visible:outline-2 focus-visible:outline-dotted focus-visible:outline-primary-logo focus-visible:outline-offset-2 text-primary-nav"
         href="/"
       >
         {title}
@@ -60,7 +66,7 @@ const socialLinks = typedSocialLinksData.map((link) => ({
                   ? "Send me an email"
                   : `Visit my ${name} profile`
               }
-              class="focus:outline-none focus:ring group-focus-within:scale-[1.25] focus:ring-2 focus:ring-dotted focus:ring-primary-logo"
+              class="focus:outline-none focus-visible:outline-2 focus-visible:outline-dotted focus-visible:outline-primary-logo focus-visible:outline-offset-2 group-focus-within:scale-[1.25]"
             >
               <Icon
                 aria-label={`${name} icon`}
