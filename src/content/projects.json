@@ -45,7 +45,7 @@
       "description": "A cloud-native microservices architecture deployed on AWS EKS.",
       "techUsed": [
         "Kubernetes",
-        "Docker",
+        "Terraform",
         "PostgreSQL",
         "Node.js",
         "Amazon Web Services"
@@ -58,7 +58,7 @@
         "Integrated CloudWatch dashboard for monitoring and performance metrics.",
         "API documentation with Postman collections for all endpoints."
       ],
-      "link": "https://github.com/MeelisM/K3s-cluster"
+      "link": "https://github.com/MeelisM/aws-cloud-design"
     },
 
     {
