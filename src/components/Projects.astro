@@ -7,11 +7,16 @@ import { Image } from "astro:assets";
 
 import project1Image from "@assets/project_1.png";
 import project2Image from "@assets/project_2.png";
+import project3Image from "@assets/project_3.png";
+import project4Image from "@assets/project_4.png";
+
 import type { ImageMetadata } from "astro";
 
 const projectImages: Record<string, ImageMetadata> = {
   "project_1.png": project1Image,
   "project_2.png": project2Image,
+  "project_3.png": project3Image,
+  "project_4.png": project4Image,
 };
 
 interface Project {
@@ -54,7 +59,7 @@ const { projects } = projectsData as ProjectsData;
               >
                 <div class="w-full h-[180px] relative overflow-hidden">
                   {/* Color overlay that disappears on hover */}
-                  <div class="absolute inset-0 bg-primary-project opacity-100 mix-blend-color group-hover:opacity-25 group-focus-within:opacity-0 z-10 transition-opacity duration-300" />
+                  <div class="absolute inset-0 bg-primary-project opacity-100 mix-blend-color group-hover:opacity-0 group-focus-within:opacity-0 z-10 transition-opacity duration-300" />
 
                   {/* "Click to view" text that appears on hover */}
                   <div class="absolute inset-0 flex items-center justify-center z-20 opacity-0 group-hover:opacity-100 group-focus-within:opacity-100 transition-opacity duration-200">
