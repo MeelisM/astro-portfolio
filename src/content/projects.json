@@ -38,7 +38,7 @@
         "Serverless visitor tracking via API Gateway, Lambda & DynamoDB.",
         "CI/CD pipeline with OIDC-authenticated GitHub Actions."
       ],
-      "link": "https://github.com/MeelisM/meelis.dev"
+      "link": "https://github.com/MeelisM/astro-portfolio"
     },
     {
       "name": "AWS Cloud Design",
