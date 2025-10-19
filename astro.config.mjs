@@ -5,9 +5,6 @@ import tailwindcss from "@tailwindcss/vite";
 // https://astro.build/config
 export default defineConfig({
   site: "https://www.meelis.dev",
-  experimental: {
-    svg: true,
-  },
   vite: {
     plugins: [tailwindcss()],
     build: {
